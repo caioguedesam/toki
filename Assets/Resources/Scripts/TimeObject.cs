@@ -19,7 +19,9 @@ public class TimeObject : MonoBehaviour
     // Seconds to get last positions and rewind time
     public float rewindSeconds;
     // Is object reversing or not?
-    public bool isReversing = false;
+    public bool isRewinding = false;
+    // Has object just went out of rewind?
+    public bool stoppedRewind = false;
     // Is object frozen in time or not?
     public bool isFrozen = false;
 
@@ -67,7 +69,9 @@ public class TimeObject : MonoBehaviour
     private void Update()
     {
         // If certain button is pressed, begin rewind
-        isReversing = Input.GetButton("Fire1");
+        isRewinding = Input.GetButton("Fire1");
+        // If certain button is released, rewind just ended
+        stoppedRewind = Input.GetButtonUp("Fire1");
     }
 
     private void FixedUpdate()
@@ -75,7 +79,7 @@ public class TimeObject : MonoBehaviour
         // Rewing done in FixedUpdate because of framerate independence
 
         // If time is not rewinding, keep saving current positions
-        if (!isReversing)
+        if (!isRewinding)
         {
             isFrozen = false;
             rewindStartTime = 0;

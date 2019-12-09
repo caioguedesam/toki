@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public GameObject timeClonePrefab;
     // Can player spawn new time clone?
     private bool canSpawnTimeClone = false;
+    // Minimum time to wait for new time clone
+    public float timeCloneRespawnSeconds;
     [SerializeField]
     public List<GameObject> playerTimeClones;
 
@@ -116,6 +118,21 @@ public class PlayerController : MonoBehaviour
         timeObj.ClearLastPositionList();
     }
 
+    /// <summary>
+    /// Coroutine that controls clone respawn time. Call this always after spawning time clone.
+    /// </summary>
+    private IEnumerator WaitForTimeCloneRespawn()
+    {
+        canSpawnTimeClone = false;
+        // Wait for clone spawn time
+        yield return new WaitForSeconds(timeCloneRespawnSeconds);
+        // Wait until object is not frozen to allow respawn again
+        while (timeObj.isFrozen)
+            yield return null;
+        // When object is not frozen, allow respawn
+        canSpawnTimeClone = true;
+    }
+
     private void Update()
     {
         // Check grounded status every frame
@@ -124,12 +141,17 @@ public class PlayerController : MonoBehaviour
         GetInput();
 
         // Move properly if player's not rewinding time and not frozen
-        if (!timeObj.isReversing && !timeObj.isFrozen)
+        if (!timeObj.isRewinding && !timeObj.isFrozen)
         {
             Move(horizontalInput);
             rb.constraints = RigidbodyConstraints2D.None;
-            // After first move, can spawn a new time clone
-            canSpawnTimeClone = true;
+            // If rewind was released before max rewind time, spawn time clone
+            if(timeObj.stoppedRewind)
+            {
+                CreateTimeClone();
+                // After spawning time clone, always wait for respawn
+                StartCoroutine(WaitForTimeCloneRespawn());
+            }
             // Activate all time clones when they aren't activated
             ActivateAllTimeClones();
         }
@@ -141,7 +163,7 @@ public class PlayerController : MonoBehaviour
             // Only spawn new time clone once per rewind
             if(canSpawnTimeClone)
                 CreateTimeClone();
-            canSpawnTimeClone = false;
+            StartCoroutine(WaitForTimeCloneRespawn());
         }
     }
 }
