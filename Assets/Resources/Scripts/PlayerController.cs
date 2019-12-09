@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private TimeObject timeObj;
     // All player time clones
     public GameObject timeClonePrefab;
+    // Max number of time clones simultaneously
+    public int timeCloneLimit = 1;
     // Can player spawn new time clone?
     private bool canSpawnTimeClone = false;
     // Minimum time to wait for new time clone
@@ -146,7 +148,7 @@ public class PlayerController : MonoBehaviour
             Move(horizontalInput);
             rb.constraints = RigidbodyConstraints2D.None;
             // If rewind was released before max rewind time, spawn time clone
-            if(timeObj.stoppedRewind)
+            if(timeObj.stoppedRewind && playerTimeClones.Count <= timeCloneLimit)
             {
                 CreateTimeClone();
                 // After spawning time clone, always wait for respawn
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             
             // Only spawn new time clone once per rewind
-            if(canSpawnTimeClone)
+            if(canSpawnTimeClone && playerTimeClones.Count <= timeCloneLimit)
                 CreateTimeClone();
             StartCoroutine(WaitForTimeCloneRespawn());
         }
