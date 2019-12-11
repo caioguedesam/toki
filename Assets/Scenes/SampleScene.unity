@@ -249,7 +249,11 @@ MonoBehaviour:
   rewindingTime: 0
   rewindSeconds: 2
   stoppedRewind: 0
+  stoppedRewindTimeFrame: 1
   player: {fileID: 1623789843}
+  cloneList: []
+  maxCloneLimit: 1
+  cloneRespawnSeconds: 1
 --- !u!1 &906870078
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +454,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef4e0639145ce54a823129e02b18d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPositions: []
+  isFrozen: 0
+  canSpawnNewClone: 1
+  timeClonePrefab: {fileID: 2441577909339075126, guid: 173d34fb52556b44ebb336acd9572e2b,
+    type: 3}
 --- !u!114 &1623789842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewindInput: 0
   stoppedRewindInput: 0
+  destroyClonesInput: 0
   moveSpeed: 50
   jumpVelocity: 45
   fallMultiplier: 2

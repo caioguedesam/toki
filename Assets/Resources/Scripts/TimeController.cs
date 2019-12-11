@@ -13,10 +13,15 @@ public class TimeController : MonoBehaviour
     public int rewindSeconds = 2;
     // Has rewind just stopped?
     public bool stoppedRewind = false;
+    public int stoppedRewindTimeFrame = 1;
     // Player reference
     public Player player;
-    // List of time clones present in scene
-    //public List<GameObject> cloneList;
+    // List of player time clones present in scene
+    public List<GameObject> cloneList;
+    // Maximum number of player time clones
+    public int maxCloneLimit = 1;
+    // Clone spawn cooldown
+    public int cloneRespawnSeconds = 1;
 
     private void Awake()
     {
@@ -32,7 +37,7 @@ public class TimeController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //cloneList = new List<GameObject>();
+        cloneList = new List<GameObject>();
     }
 
     private void CheckRewind()
@@ -41,10 +46,10 @@ public class TimeController : MonoBehaviour
         stoppedRewind = player.stoppedRewindInput;
     }
 
-    public void AddPosition(GameObject gameObj, List<TimePosition> posArray)
+    public void AddPlayerPosition(GameObject gameObj, List<PlayerTimePosition> posArray)
     {
         // Making new position to store in list
-        TimePosition pos = new TimePosition();
+        PlayerTimePosition pos = new PlayerTimePosition();
         pos.position = gameObj.transform.position;
         pos.time = Time.time;
 
@@ -54,19 +59,45 @@ public class TimeController : MonoBehaviour
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
     }
 
-    /*public void AddClone(GameObject clone)
+    public void AddClone(GameObject clone)
     {
         cloneList.Add(clone);
-    }*/
+    }
+
+    public void ActivateAllClones()
+    {
+        for(int i = 0; i < cloneList.Count; i++)
+        {
+            GameObject clone = cloneList[i];
+            if (!clone.activeSelf)
+                clone.SetActive(true);
+        }
+    }
+
+    public void DestroyAllClones()
+    {
+        for (int i = 0; i < cloneList.Count; i++)
+        {
+            Destroy(cloneList[i]);
+            cloneList.RemoveAt(i);
+        }
+    }
+
+    public void CheckDestroyClones()
+    {
+        if (player.destroyClonesInput && cloneList.Count > 0)
+            DestroyAllClones();
+    }
 
     private void Update()
     {
         CheckRewind();
+        CheckDestroyClones();
     }
 }
 
 [System.Serializable]
-public class TimePosition
+public class PlayerTimePosition
 {
     public Vector3 position;
     public float time;

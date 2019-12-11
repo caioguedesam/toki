@@ -90,8 +90,7 @@ GameObject:
   - component: {fileID: 2441577909339075121}
   - component: {fileID: 2441577909339075122}
   - component: {fileID: 2441577909339075124}
-  - component: {fileID: 2441577909339075125}
-  - component: {fileID: -4540138273325769075}
+  - component: {fileID: 6110658529903500928}
   m_Layer: 0
   m_Name: TimeClone
   m_TagString: Untagged
@@ -179,7 +178,7 @@ MonoBehaviour:
   isGrounded: 0
   collisionRadius: 0.25
   bottomOffset: {x: 0, y: -0.5}
---- !u!114 &2441577909339075125
+--- !u!114 &6110658529903500928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,29 +187,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2441577909339075126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61638d82cbc944b96df1f8eb7b1e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 032290cd8f479544e95538596c49484f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerController: {fileID: 0}
-  playerTimeObject: {fileID: 0}
-  destroyCloneParticle: {fileID: 1520049434160734559, guid: 1826c03d21e0bee4ab166008c5426d1b,
-    type: 3}
-  cloneLifetime: 3
-  clonePosIndex: 0
---- !u!114 &-4540138273325769075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2441577909339075126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5ad27cf8c05d44dab13411fd628140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewindSeconds: 0
-  isRewinding: 0
-  stoppedRewind: 0
-  isFrozen: 0
+  playerRewind: {fileID: 0}
+  clonePositions: []

@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class RewindPlayer : MonoBehaviour
 {
-    public List<TimePosition> playerPositions;
+    public List<PlayerTimePosition> playerPositions;
+    [HideInInspector]
+    public List<PlayerTimePosition> playerRecord;
     public bool isFrozen = false;
+    public bool canSpawnNewClone = true;
+    private bool stoppedRewind;
 
+    public GameObject timeClonePrefab;
     private Rigidbody2D rb;
 
     private void Start()
     {
-        playerPositions = new List<TimePosition>();
+        playerPositions = new List<PlayerTimePosition>();
+        playerRecord = new List<PlayerTimePosition>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -19,7 +25,9 @@ public class RewindPlayer : MonoBehaviour
     {
         if(playerPositions.Count > 0)
         {
-            transform.position = playerPositions[playerPositions.Count - 1].position;
+            PlayerTimePosition currentPos = playerPositions[playerPositions.Count - 1];
+            transform.position = currentPos.position;
+            playerRecord.Insert(0, currentPos);
             playerPositions.RemoveAt(playerPositions.Count - 1);
         }
         else
@@ -28,19 +36,71 @@ public class RewindPlayer : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
+    private void ControlPlayerRecord()
+    {
+        if (!TimeController.Instance.rewindingTime && playerRecord.Count > 0)
+            playerRecord.Clear();
+        Debug.Log("record count: " + playerRecord.Count);
+
+    }
+
+    private void SpawnClone()
+    {
+        if(TimeController.Instance.cloneList.Count < TimeController.Instance.maxCloneLimit)
+        {
+            Debug.Log("Spawn Clone!");
+            GameObject clone;
+            clone = Instantiate(timeClonePrefab, transform.position, Quaternion.identity);
+            clone.SetActive(false);
+
+            TimeController.Instance.AddClone(clone);
+            StartCoroutine(WaitToSpawnClone());
+        }
+    }
+
+    public IEnumerator WaitToSpawnClone()
+    {
+        canSpawnNewClone = false;
+        // Wait for clone spawn time
+        yield return new WaitForSeconds(TimeController.Instance.cloneRespawnSeconds);
+        // Wait until object is not frozen to allow respawn again
+        while (isFrozen)
+            yield return null;
+        // When object is not frozen, allow respawn IF clone limit hasn't been reached
+        if(TimeController.Instance.cloneList.Count <= TimeController.Instance.maxCloneLimit)
+            canSpawnNewClone = true;
+    }
+
+    private void Update()
+    {
+        stoppedRewind = TimeController.Instance.stoppedRewind;
+        ControlPlayerRecord();
+    }
 
     private void FixedUpdate()
     {
-        if(TimeController.Instance.rewindingTime)
+
+        if (TimeController.Instance.rewindingTime)
         {
             PlayerRewind();
+            if(isFrozen && canSpawnNewClone)
+            {
+                SpawnClone();
+            }
+                
         }
         else
         {
+            if (stoppedRewind && canSpawnNewClone)
+            {
+                SpawnClone();
+            }
             isFrozen = false;
             rb.constraints = RigidbodyConstraints2D.None;
 
-            TimeController.Instance.AddPosition(gameObject, playerPositions);
+            TimeController.Instance.ActivateAllClones();
+
+            TimeController.Instance.AddPlayerPosition(gameObject, playerPositions);
         }
     }
 }

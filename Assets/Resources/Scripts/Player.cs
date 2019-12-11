@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public bool rewindInput;
     [HideInInspector]
     public bool stoppedRewindInput;
+    [HideInInspector]
+    public bool destroyClonesInput;
 
     // Movement variables
     public float moveSpeed;
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour
         // Getting rewind input
         rewindInput = Input.GetButton("Fire1");
         stoppedRewindInput = Input.GetButtonUp("Fire1");
+        destroyClonesInput = Input.GetButtonDown("Fire2");
     }
 
     public void Move(float horizontalInput)
