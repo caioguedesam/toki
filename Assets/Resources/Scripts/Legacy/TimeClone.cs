@@ -12,13 +12,15 @@ public class TimeClone : MonoBehaviour
     // Clone variables
     private TimeObject cloneTimeObject;
     // This clone's positions to execute
-    public List<TimePosition> clonePositions;
+    public List<TimePosition2> clonePositions;
     // This clone's record of executed positions
-    public List<TimePosition> cloneRecord;
+    public List<TimePosition2> cloneRecord;
     // Placeholder particle for when clone is destroyed
     public ParticleSystem destroyCloneParticle;
     // Clone lifetime after ending movement
     public float cloneLifetime;
+
+    public int clonePosIndex = 0;
 
     private void Awake()
     {
@@ -30,9 +32,28 @@ public class TimeClone : MonoBehaviour
 
         cloneTimeObject = GetComponent<TimeObject>();
         cloneTimeObject.rewindSeconds = playerTimeObject.rewindSeconds;
-        clonePositions = new List<TimePosition>(playerTimeObject.lastPositions);
-        cloneRecord = new List<TimePosition>();
+        clonePositions = new List<TimePosition2>(playerTimeObject.lastPositions);
+        cloneRecord = new List<TimePosition2>();
         Debug.Log("Clone positions: " + clonePositions.Count);
+    }
+
+    private void MoveClone()
+    {
+        // Changing index accordingly
+        if(cloneTimeObject.isRewinding && !cloneTimeObject.isFrozen && clonePosIndex > 0)
+        {
+            //clonePosIndex--;
+            Debug.Log("index: " + clonePosIndex);
+        }
+        else if(!cloneTimeObject.isFrozen && !cloneTimeObject.isRewinding)
+        {
+            if(clonePosIndex < clonePositions.Count)
+            {
+                transform.position = clonePositions[clonePosIndex].position;
+                clonePosIndex++;
+                Debug.Log("index: " + clonePosIndex);
+            }
+        }
     }
 
     /// <summary>
@@ -50,9 +71,9 @@ public class TimeClone : MonoBehaviour
     /// </summary>
     private void MoveClonePosition(bool isRewinding)
     {
-        if(isRewinding && cloneTimeObject.lastPositions.Count > 0)
+        if(isRewinding && !cloneTimeObject.isFrozen && cloneTimeObject.lastPositions.Count > 0)
         {
-            List<TimePosition> cloneLastPositions = cloneTimeObject.lastPositions;
+            List<TimePosition2> cloneLastPositions = cloneTimeObject.lastPositions;
             clonePositions.Insert(0, cloneLastPositions[cloneLastPositions.Count - 1]);
             cloneTimeObject.lastPositions.RemoveAt(cloneLastPositions.Count - 1);
         }
@@ -72,9 +93,10 @@ public class TimeClone : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MoveClone();
 
         // If there's still a position to move, move
-        if(clonePositions.Count > 0 && !cloneTimeObject.isRewinding)
+        /*(clonePositions.Count > 0 && !cloneTimeObject.isRewinding)
         {
             
             MoveClonePosition();
@@ -89,6 +111,6 @@ public class TimeClone : MonoBehaviour
         else
         {
             //StartCoroutine(DestroyTimeClone());
-        }
+        }*/
     }
 }

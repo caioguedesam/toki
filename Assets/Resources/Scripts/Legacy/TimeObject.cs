@@ -13,9 +13,9 @@ using UnityEngine;
 public class TimeObject : MonoBehaviour
 {
     // Object positions
-    private List<TimePosition> positions;
+    private List<TimePosition2> positions;
     // Last positions
-    public List<TimePosition> lastPositions;
+    public List<TimePosition2> lastPositions;
     // Seconds to get last positions and rewind time
     public float rewindSeconds;
     // Is object reversing or not?
@@ -36,6 +36,13 @@ public class TimeObject : MonoBehaviour
         //Debug.Log("Rewinding");
         // Setting new object position
         transform.position = positions[positions.Count - 1].position;
+
+        if(gameObject.tag == "TimeClone")
+        {
+            TimeClone clone = GetComponent<TimeClone>();
+            transform.position = clone.clonePositions[clone.clonePosIndex].position;
+        }
+
         // Storing said position in lastPositions
         lastPositions.Insert(0, positions[positions.Count - 1]);
         // Removing said position to use previous position in next call
@@ -62,8 +69,8 @@ public class TimeObject : MonoBehaviour
     {
         rewindStartTime = 0;
         // Setting references
-        positions = new List<TimePosition>();
-        lastPositions = new List<TimePosition>();
+        positions = new List<TimePosition2>();
+        lastPositions = new List<TimePosition2>();
     }
 
     private void Update()
@@ -85,7 +92,7 @@ public class TimeObject : MonoBehaviour
             rewindStartTime = 0;
 
             // Making new position to store in list
-            TimePosition pos = new TimePosition();
+            TimePosition2 pos = new TimePosition2();
             pos.position = transform.position;
             pos.time = Time.time;
 
@@ -106,6 +113,17 @@ public class TimeObject : MonoBehaviour
 
             //Debug.Log(positions.Count);
         }
+        else if(gameObject.tag == "TimeClone")
+        {
+            TimeClone clone = GetComponent<TimeClone>();
+            // Set time rewind began
+            if (rewindStartTime == 0)
+                rewindStartTime = Time.time;
+            // Rewind Time!
+            RewindTime();
+
+            clone.clonePosIndex--;
+        }
         // If all stored positions end, object is frozen in time
         else
         {
@@ -117,7 +135,7 @@ public class TimeObject : MonoBehaviour
 /// <summary>
 /// Time position to store position and time registered.
 /// </summary>
-public class TimePosition
+public class TimePosition2
 {
     public Vector3 position;
     public float time;

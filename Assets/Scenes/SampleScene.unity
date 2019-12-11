@@ -201,8 +201,55 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &855126418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855126419}
+  - component: {fileID: 855126420}
+  m_Layer: 0
+  m_Name: TimeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &855126419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855126418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0611157, y: 2.1520364, z: -16.860975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855126420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855126418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f269c50df1bf9524291786f0e2c0c60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindingTime: 0
+  rewindSeconds: 2
+  stoppedRewind: 0
+  player: {fileID: 1623789843}
 --- !u!1 &906870078
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +353,7 @@ Transform:
   m_LocalScale: {x: 19.753273, y: 3.219264, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623789837
 GameObject:
@@ -319,9 +366,9 @@ GameObject:
   - component: {fileID: 1623789838}
   - component: {fileID: 1623789839}
   - component: {fileID: 1623789840}
-  - component: {fileID: 1623789841}
   - component: {fileID: 1623789842}
   - component: {fileID: 1623789843}
+  - component: {fileID: 1623789841}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -342,7 +389,7 @@ Transform:
   m_Children:
   - {fileID: 2110868979}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1623789839
 BoxCollider2D:
@@ -400,16 +447,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623789837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d60c44b127663d42b869ce9da7e78dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ef4e0639145ce54a823129e02b18d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeClonePrefab: {fileID: 2441577909339075126, guid: 173d34fb52556b44ebb336acd9572e2b,
-    type: 3}
-  playerTimeClones: []
-  moveSpeed: 50
-  jumpVelocity: 45
-  fallMultiplier: 2
-  deltatimeSpeedMagnitude: 10
 --- !u!114 &1623789842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,12 +477,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623789837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5ad27cf8c05d44dab13411fd628140, type: 3}
+  m_Script: {fileID: 11500000, guid: abef1bb4f6569784b870ed96603f3cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewindSeconds: 1
-  isReversing: 0
-  isFrozen: 0
+  rewindInput: 0
+  stoppedRewindInput: 0
+  moveSpeed: 50
+  jumpVelocity: 45
+  fallMultiplier: 2
+  deltatimeSpeedMagnitude: 10
 --- !u!1 &2110868978
 GameObject:
   m_ObjectHideFlags: 0

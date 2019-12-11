@@ -197,6 +197,7 @@ MonoBehaviour:
   destroyCloneParticle: {fileID: 1520049434160734559, guid: 1826c03d21e0bee4ab166008c5426d1b,
     type: 3}
   cloneLifetime: 3
+  clonePosIndex: 0
 --- !u!114 &-4540138273325769075
 MonoBehaviour:
   m_ObjectHideFlags: 0

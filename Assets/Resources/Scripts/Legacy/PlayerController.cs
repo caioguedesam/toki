@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         // Wait for clone spawn time
         yield return new WaitForSeconds(timeCloneRespawnSeconds);
         // Wait until object is not frozen to allow respawn again
-        while (timeObj.isFrozen)
+        while (timeObj.isFrozen && playerTimeClones.Count > timeCloneLimit)
             yield return null;
         // When object is not frozen, allow respawn
         canSpawnTimeClone = true;
