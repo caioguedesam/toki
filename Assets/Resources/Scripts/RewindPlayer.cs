@@ -36,13 +36,6 @@ public class RewindPlayer : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
-    private void ControlPlayerRecord()
-    {
-        if (!TimeController.Instance.rewindingTime && playerRecord.Count > 0)
-            playerRecord.Clear();
-        Debug.Log("record count: " + playerRecord.Count);
-
-    }
 
     private void SpawnClone()
     {
@@ -55,6 +48,9 @@ public class RewindPlayer : MonoBehaviour
 
             TimeController.Instance.AddClone(clone);
             StartCoroutine(WaitToSpawnClone());
+
+            playerRecord.Clear();
+            Debug.Log("Player Record Cleared!");
         }
     }
 
@@ -74,7 +70,6 @@ public class RewindPlayer : MonoBehaviour
     private void Update()
     {
         stoppedRewind = TimeController.Instance.stoppedRewind;
-        ControlPlayerRecord();
     }
 
     private void FixedUpdate()

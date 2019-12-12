@@ -74,6 +74,16 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    public bool CheckSetClones()
+    {
+        for(int i = 0; i < cloneList.Count; i++)
+        {
+            if (cloneList[i].GetComponent<Clone>().clonePositions.Count == 0)
+                return false;
+        }
+        return true;
+    }
+
     public void DestroyAllClones()
     {
         for (int i = 0; i < cloneList.Count; i++)
