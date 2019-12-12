@@ -5,7 +5,6 @@ using UnityEngine;
 public class RewindPlayer : MonoBehaviour
 {
     public List<PlayerTimePosition> playerPositions;
-    [HideInInspector]
     public List<PlayerTimePosition> playerRecord;
     public bool isFrozen = false;
     public bool canSpawnNewClone = true;

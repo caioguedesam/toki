@@ -8,6 +8,8 @@ public class Clone : MonoBehaviour
     public RewindPlayer playerRewind;
     public List<PlayerTimePosition> clonePositions;
 
+    private float cloneRewindTime = 0f;
+    private float cloneSpawnTime = 0f;
     public int posIndex = 0;
 
     private void Awake()
@@ -16,8 +18,22 @@ public class Clone : MonoBehaviour
 
         playerRewind = player.GetComponent<RewindPlayer>();
         clonePositions = new List<PlayerTimePosition>(playerRewind.playerRecord);
+        cloneRewindTime = TimeController.Instance.lastRewindTime;
+        cloneSpawnTime = TimeController.Instance.rewindStartTime;
+
         Debug.Log("playerrecord: " + playerRewind.playerRecord.Count);
         Debug.Log("clonepos: " + clonePositions.Count);
+    }
+
+    private void Start()
+    {
+        CleanClonePositions();
+    }
+
+    private void CleanClonePositions()
+    {
+        /*if(cloneRewindTime != TimeController.Instance.rewindSeconds)
+            clonePositions.RemoveAll(x => x.time < (cloneSpawnTime - cloneRewindTime));*/
     }
 
     private void MoveClone()

@@ -13,6 +13,14 @@ public class TimeController : MonoBehaviour
     public int rewindSeconds = 2;
     // Has rewind just stopped?
     public bool stoppedRewind = false;
+    // Time current rewind started
+    public float rewindStartTime = 0f;
+    // Time current rewind ended
+    public float rewindEndTime = 0f;
+    // Total rewind time of last rewind
+    public float lastRewindTime = 0f;
+    private bool isCheckingRewindTime = false;
+
     public int stoppedRewindTimeFrame = 1;
     // Player reference
     public Player player;
@@ -43,7 +51,39 @@ public class TimeController : MonoBehaviour
     private void CheckRewind()
     {
         rewindingTime = player.rewindInput;
+        if (rewindingTime)
+        {
+            StartCoroutine(GetRewindTime());
+        }
+
         stoppedRewind = player.stoppedRewindInput;
+    }
+
+    private IEnumerator GetRewindTime()
+    {
+        if(!isCheckingRewindTime)
+        {
+            // Stopping other coroutine calls from doing this
+            isCheckingRewindTime = true;
+
+            // Recording rewind start time
+            rewindStartTime = Time.time;
+
+            // Waiting for rewind to end
+            while (rewindingTime || player.GetComponent<RewindPlayer>().isFrozen)
+            {
+                yield return null;
+            }
+
+            // Recording rewind end time and total time
+            rewindEndTime = Time.time;
+            lastRewindTime = Mathf.Min(rewindEndTime - rewindStartTime, rewindSeconds);
+
+            Debug.Log("last rewind time: " + lastRewindTime);
+
+            // Allowing for next rewind to be recorded
+            isCheckingRewindTime = false;
+        }
     }
 
     public void AddPlayerPosition(GameObject gameObj, List<PlayerTimePosition> posArray)
