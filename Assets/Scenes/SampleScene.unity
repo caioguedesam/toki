@@ -249,6 +249,33 @@ MonoBehaviour:
   rewindingTime: 0
   rewindSeconds: 2
   stoppedRewind: 0
+  rewindStartTime: 0
+  rewindEndTime: 0
+  lastRewindTime: 0
+  rewindTimeScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.036513746
+      outSlope: 0.036513746
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2947225
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: 3.9047203
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 0
+      inWeight: 0.09068816
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   stoppedRewindTimeFrame: 1
   player: {fileID: 1623789843}
   cloneList: []
@@ -455,6 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPositions: []
+  playerRecord: []
   isFrozen: 0
   canSpawnNewClone: 1
   timeClonePrefab: {fileID: 2441577909339075126, guid: 173d34fb52556b44ebb336acd9572e2b,
@@ -492,6 +520,7 @@ MonoBehaviour:
   rewindInput: 0
   stoppedRewindInput: 0
   destroyClonesInput: 0
+  timeScaleInput: 0
   moveSpeed: 50
   jumpVelocity: 45
   fallMultiplier: 2

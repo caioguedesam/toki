@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public bool stoppedRewindInput;
     [HideInInspector]
     public bool destroyClonesInput;
+    [HideInInspector]
+    public bool timeScaleInput;
 
     // Movement variables
     public float moveSpeed;
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
         rewindInput = Input.GetButton("Fire1");
         stoppedRewindInput = Input.GetButtonUp("Fire1");
         destroyClonesInput = Input.GetButtonDown("Fire2");
+        timeScaleInput = Input.GetButton("Fire3");
     }
 
     public void Move(float horizontalInput)

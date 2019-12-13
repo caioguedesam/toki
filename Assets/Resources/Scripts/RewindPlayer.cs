@@ -95,6 +95,9 @@ public class RewindPlayer : MonoBehaviour
             TimeController.Instance.ActivateAllClones();
 
             TimeController.Instance.AddPlayerPosition(gameObject, playerPositions);
+
+            // Not sure if I really need this. Address later on.
+            playerRecord.Clear();
         }
     }
 }

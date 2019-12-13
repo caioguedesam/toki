@@ -19,7 +19,12 @@ public class TimeController : MonoBehaviour
     public float rewindEndTime = 0f;
     // Total rewind time of last rewind
     public float lastRewindTime = 0f;
+    // Rewind time slow/speed effect scale
+    public AnimationCurve rewindTimeScaleCurve;
+
+    // Coroutine controllers
     private bool isCheckingRewindTime = false;
+    private bool isChangingTimeScale = false;
 
     public int stoppedRewindTimeFrame = 1;
     // Player reference
@@ -56,6 +61,8 @@ public class TimeController : MonoBehaviour
             StartCoroutine(GetRewindTime());
         }
 
+        ChangeRewindTimeScale();
+
         stoppedRewind = player.stoppedRewindInput;
     }
 
@@ -83,6 +90,18 @@ public class TimeController : MonoBehaviour
 
             // Allowing for next rewind to be recorded
             isCheckingRewindTime = false;
+        }
+    }
+
+    public void ChangeRewindTimeScale()
+    {
+        if(rewindingTime)
+        {
+            Time.timeScale = rewindTimeScaleCurve.Evaluate(Time.time - rewindStartTime);
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
     }
 
