@@ -54,7 +54,7 @@ public class Clone : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!TimeController.Instance.rewindingTime)
         {

@@ -26,6 +26,9 @@ public class TimeController : MonoBehaviour
     private bool isCheckingRewindTime = false;
     private bool isChangingTimeScale = false;
 
+    // Original deltaTime
+    private float originalFixedDeltaTime;
+
     public int stoppedRewindTimeFrame = 1;
     // Player reference
     public Player player;
@@ -51,6 +54,7 @@ public class TimeController : MonoBehaviour
         }
 
         cloneList = new List<GameObject>();
+        originalFixedDeltaTime = Time.fixedDeltaTime;
     }
 
     private void CheckRewind()
