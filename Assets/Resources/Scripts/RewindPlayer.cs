@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class RewindPlayer : MonoBehaviour
 {
+    // Player's stored positions
     public List<PlayerTimePosition> playerPositions;
+    // Player record of positions (is sent to time clones)
     public List<PlayerTimePosition> playerRecord;
+    // Is the player frozen in time?
     public bool isFrozen = false;
+    // Can the player spawn a new time clone?
     public bool canSpawnNewClone = true;
+    // Has the player just stopped time rewind?
     private bool stoppedRewind;
 
+    // Time clone GameObject
     public GameObject timeClonePrefab;
+    // Rigidbody2D ref
     private Rigidbody2D rb;
 
     private void Start()
     {
+        // Setting references
         playerPositions = new List<PlayerTimePosition>();
         playerRecord = new List<PlayerTimePosition>();
         rb = GetComponent<Rigidbody2D>();
     }
 
+    /// <summary>
+    /// Handles player movement while rewinding time.
+    /// </summary>
     public void PlayerRewind()
     {
+        // If there are positions left on the position list, move player past one position 
         if(playerPositions.Count > 0)
         {
             PlayerTimePosition currentPos = playerPositions[playerPositions.Count - 1];
             transform.position = currentPos.position;
+            // Insert the position on the record for the clone
             playerRecord.Insert(0, currentPos);
+            // Remove the position from the stored list
             playerPositions.RemoveAt(playerPositions.Count - 1);
         }
+        // If there are no positions left, player is frozen in time
         else
         {
             isFrozen = true;
@@ -36,23 +51,33 @@ public class RewindPlayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to spawn a new time clone.
+    /// </summary>
     private void SpawnClone()
     {
+        // If there are less clones than the clone limit established in TimeController, spawn
         if(TimeController.Instance.cloneList.Count < TimeController.Instance.maxCloneLimit)
         {
             Debug.Log("Spawn Clone!");
             GameObject clone;
             clone = Instantiate(timeClonePrefab, transform.position, Quaternion.identity);
+            // Initially sets clone to inactive state
             clone.SetActive(false);
 
             TimeController.Instance.AddClone(clone);
+            // Wait to be able to spawn new clones
             StartCoroutine(WaitToSpawnClone());
 
+            // Clear the player record
             playerRecord.Clear();
             Debug.Log("Player Record Cleared!");
         }
     }
 
+    /// <summary>
+    /// Waits time established in TimeController for new time clone spawn
+    /// </summary>
     public IEnumerator WaitToSpawnClone()
     {
         canSpawnNewClone = false;
@@ -73,7 +98,7 @@ public class RewindPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        // If time is rewinding, call rewind and spawn clone at the end
         if (TimeController.Instance.rewindingTime)
         {
             PlayerRewind();
@@ -85,15 +110,18 @@ public class RewindPlayer : MonoBehaviour
         }
         else
         {
+            // If time just stopped rewinding and player can spawn a new clone, spawn
             if (stoppedRewind && canSpawnNewClone)
             {
                 SpawnClone();
             }
+            // If time isn't rewinding, player isn't frozen in time.
             isFrozen = false;
             rb.constraints = RigidbodyConstraints2D.None;
 
             TimeController.Instance.ActivateAllClones();
 
+            // Add new position every physics update
             TimeController.Instance.AddPlayerPosition(gameObject, playerPositions);
 
             // Not sure if I really need this. Address later on.

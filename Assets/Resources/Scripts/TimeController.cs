@@ -57,16 +57,22 @@ public class TimeController : MonoBehaviour
         originalFixedDeltaTime = Time.fixedDeltaTime;
     }
 
+    /// <summary>
+    /// Checking if time is rewinding every frame. Also handles minor things regarding time rewinding.
+    /// </summary>
     private void CheckRewind()
     {
         rewindingTime = player.rewindInput;
+        // If rewind input, start rewind
         if (rewindingTime)
         {
             StartCoroutine(GetRewindTime());
         }
 
+        // Change time scale when rewinding
         ChangeRewindTimeScale();
 
+        // Detect when rewind is stopped
         stoppedRewind = player.stoppedRewindInput;
     }
 
@@ -97,10 +103,14 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to change time scale based on time curve, to add feedback to player rewinding time.
+    /// </summary>
     public void ChangeRewindTimeScale()
     {
         if(rewindingTime)
         {
+            // Evaluate given time from rewind start point in time curve
             Time.timeScale = rewindTimeScaleCurve.Evaluate(Time.time - rewindStartTime);
         }
         else
@@ -109,6 +119,11 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds a new player position to the position list.
+    /// </summary>
+    /// <param name="gameObj">Object to store position from.</param>
+    /// <param name="posArray">List to add position in.</param>
     public void AddPlayerPosition(GameObject gameObj, List<PlayerTimePosition> posArray)
     {
         // Making new position to store in list
@@ -122,11 +137,18 @@ public class TimeController : MonoBehaviour
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
     }
 
+    /// <summary>
+    /// Adds a time clone to the controller's clone list.
+    /// </summary>
+    /// <param name="clone"></param>
     public void AddClone(GameObject clone)
     {
         cloneList.Add(clone);
     }
 
+    /// <summary>
+    /// Activates all time clones from the clone list.
+    /// </summary>
     public void ActivateAllClones()
     {
         for(int i = 0; i < cloneList.Count; i++)
@@ -137,6 +159,9 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if there are positions assigned to all the clones
+    /// </summary>
     public bool CheckSetClones()
     {
         for(int i = 0; i < cloneList.Count; i++)
@@ -147,6 +172,9 @@ public class TimeController : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Destroys all time clones from the time clone list.
+    /// </summary>
     public void DestroyAllClones()
     {
         for (int i = 0; i < cloneList.Count; i++)
@@ -156,6 +184,9 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks for input to destroy time clones in game.
+    /// </summary>
     public void CheckDestroyClones()
     {
         if (player.destroyClonesInput && cloneList.Count > 0)
