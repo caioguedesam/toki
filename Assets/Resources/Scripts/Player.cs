@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private float verticalInput;
     // Jump input
     private bool jumpInput;
+    // Interact input
+    public bool interactInput;
 
     // Can player jump? Based on ground collisions
     private bool canJump = true;
@@ -22,8 +24,6 @@ public class Player : MonoBehaviour
     public bool stoppedRewindInput;
     [HideInInspector]
     public bool destroyClonesInput;
-    [HideInInspector]
-    public bool timeScaleInput;
 
     // Movement variables
     public float moveSpeed;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         rewindInput = Input.GetButton("Fire1");
         stoppedRewindInput = Input.GetButtonUp("Fire1");
         destroyClonesInput = Input.GetButtonDown("Fire2");
-        timeScaleInput = Input.GetButton("Fire3");
+        interactInput = Input.GetButtonDown("Fire3");
     }
 
     public void Move(float horizontalInput)

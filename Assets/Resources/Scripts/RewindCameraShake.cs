@@ -25,7 +25,6 @@ public class RewindCameraShake : MonoBehaviour
 
                 float posX = Random.Range(-1f, 1f) * currentShake;
                 float posY = Random.Range(-1f, 1f) * currentShake;
-                Debug.Log("current shake: " + currentShake);
 
                 transform.localPosition = new Vector3(posX, posY, originalPosition.z);
 

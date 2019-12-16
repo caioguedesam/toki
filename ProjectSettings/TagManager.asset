@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TimeClone
+  - Door
   layers:
   - Default
   - TransparentFX
