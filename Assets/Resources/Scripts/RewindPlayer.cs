@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RewindPlayer : MonoBehaviour
 {
+    private Player player;
     // Player's stored positions
     public List<PlayerTimePosition> playerPositions;
     // Player record of positions (is sent to time clones)
@@ -23,6 +24,7 @@ public class RewindPlayer : MonoBehaviour
     private void Start()
     {
         // Setting references
+        player = GetComponent<Player>();
         playerPositions = new List<PlayerTimePosition>();
         playerRecord = new List<PlayerTimePosition>();
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +40,8 @@ public class RewindPlayer : MonoBehaviour
         {
             PlayerTimePosition currentPos = playerPositions[playerPositions.Count - 1];
             transform.position = currentPos.position;
+            // Set player inputs along with position
+            player.SetInputFromPosition(currentPos.input);
             // Insert the position on the record for the clone
             playerRecord.Insert(0, currentPos);
             // Remove the position from the stored list
@@ -122,7 +126,7 @@ public class RewindPlayer : MonoBehaviour
             TimeController.Instance.ActivateAllClones();
 
             // Add new position every physics update
-            TimeController.Instance.AddPlayerPosition(gameObject, playerPositions);
+            TimeController.Instance.AddPosition(gameObject, playerPositions);
 
             // Not sure if I really need this. Address later on.
             playerRecord.Clear();

@@ -124,12 +124,19 @@ public class TimeController : MonoBehaviour
     /// </summary>
     /// <param name="gameObj">Object to store position from.</param>
     /// <param name="posArray">List to add position in.</param>
-    public void AddPlayerPosition(GameObject gameObj, List<PlayerTimePosition> posArray)
+    public void AddPosition(GameObject gameObj, List<PlayerTimePosition> posArray)
     {
         // Making new position to store in list
         PlayerTimePosition pos = new PlayerTimePosition();
         pos.position = gameObj.transform.position;
         pos.time = Time.time;
+        pos.input = new TimePositionInput();
+
+        // If it's the player adding a new position, also store inputs
+        if(gameObj.tag == "Player")
+        {
+            pos.input.SetInput();
+        }
 
         posArray.Add(pos);
 
@@ -189,7 +196,7 @@ public class TimeController : MonoBehaviour
     /// </summary>
     public void CheckDestroyClones()
     {
-        if (player.destroyClonesInput && cloneList.Count > 0)
+        if (player.timeClearInput && cloneList.Count > 0)
             DestroyAllClones();
     }
 
@@ -205,4 +212,27 @@ public class PlayerTimePosition
 {
     public Vector3 position;
     public float time;
+    public TimePositionInput input;
+}
+
+[System.Serializable]
+public class TimePositionInput
+{
+    public bool jumpInput;
+    public bool timeClearInput;
+    public bool interactInput;
+    public bool rewindInput;
+
+    /// <summary>
+    /// Sets the position inputs based on current player input.
+    /// </summary>
+    public void SetInput()
+    {
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+        jumpInput = player.jumpInput;
+        timeClearInput = player.timeClearInput;
+        interactInput = player.interactInput;
+        rewindInput = player.rewindInput;
+    }
 }

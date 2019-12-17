@@ -8,6 +8,8 @@ public class Switch : MonoBehaviour
     public Player player;
     // List of objects to activate with switch
     public List<GameObject> listOfObjects;
+    // Will the button be activated?
+    private bool activateCondition;
 
     // Delay time for next toggle
     public float switchToggleDelayTime = 1f;
@@ -52,6 +54,14 @@ public class Switch : MonoBehaviour
         if(collision.tag == "Player" && player.interactInput)
         {
             StartCoroutine(ActivateSwitch());
+        }
+        else if(collision.tag == "TimeClone")
+        {
+            Clone clone = collision.GetComponent<Clone>();
+            bool cloneInteract = clone.clonePositions[clone.posIndex].input.interactInput;
+
+            if (cloneInteract)
+                StartCoroutine(ActivateSwitch());
         }
     }
 

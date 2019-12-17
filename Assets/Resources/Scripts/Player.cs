@@ -5,25 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Horizontal and Vertical Inputs
-    private float horizontalInput;
-    private float verticalInput;
+    public float horizontalInput;
+    public float verticalInput;
     // Jump input
-    private bool jumpInput;
+    [SerializeField]
+    public bool jumpInput;
     // Interact input
     public bool interactInput;
 
     // Can player jump? Based on ground collisions
-    private bool canJump = true;
+    public bool canJump = true;
     // Ground collision reference
     private GroundCollision coll;
 
     // Rewinding time input
-    [HideInInspector]
+    [SerializeField]
     public bool rewindInput;
     [HideInInspector]
     public bool stoppedRewindInput;
-    [HideInInspector]
-    public bool destroyClonesInput;
+    [SerializeField]
+    public bool timeClearInput;
 
     // Movement variables
     public float moveSpeed;
@@ -46,17 +47,31 @@ public class Player : MonoBehaviour
 
     public void GetInput()
     {
-        // Getting axis inputs
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = 0f;
-        // Getting jump input
-        jumpInput = Input.GetButton("Jump");
+        // Rewind dependant inputs are only set when not rewinding
+        if(!TimeController.Instance.rewindingTime)
+        {
+            // Getting axis inputs
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = 0f;
+            // Getting jump input
+            jumpInput = Input.GetButton("Jump");
 
+            timeClearInput = Input.GetButtonDown("Fire2");
+            interactInput = Input.GetButtonDown("Fire3");
+        }
+        
         // Getting rewind input
         rewindInput = Input.GetButton("Fire1");
         stoppedRewindInput = Input.GetButtonUp("Fire1");
-        destroyClonesInput = Input.GetButtonDown("Fire2");
-        interactInput = Input.GetButtonDown("Fire3");
+    }
+
+    public void SetInputFromPosition(TimePositionInput input)
+    {
+        jumpInput = input.jumpInput;
+        interactInput = input.interactInput;
+        timeClearInput = input.timeClearInput;
+        // Rewind shouldn't be set because this is called when rewinding!
+        //rewindInput = input.rewindInput;
     }
 
     public void Move(float horizontalInput)

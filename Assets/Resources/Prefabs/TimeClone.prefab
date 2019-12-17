@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6110658529903500928}
   m_Layer: 0
   m_Name: TimeClone
-  m_TagString: Untagged
+  m_TagString: TimeClone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,3 +192,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRewind: {fileID: 0}
   clonePositions: []
+  posIndex: 0
