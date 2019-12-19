@@ -8,7 +8,7 @@ public class TimeController : MonoBehaviour
     public static TimeController Instance { get; private set; }
 
     // Is time rewinding?
-    public bool rewindingTime = false;
+    public bool isRewindingTime = false;
     // How much time to rewind
     public int rewindSeconds = 2;
     // Has rewind just stopped?
@@ -31,7 +31,7 @@ public class TimeController : MonoBehaviour
 
     public int stoppedRewindTimeFrame = 1;
     // Player reference
-    public Player player;
+    public PlayerControl player;
     // List of player time clones present in scene
     public List<GameObject> cloneList;
     // Maximum number of player time clones
@@ -62,9 +62,9 @@ public class TimeController : MonoBehaviour
     /// </summary>
     private void CheckRewind()
     {
-        rewindingTime = player.rewindInput;
+        isRewindingTime = player.rewindInput;
         // If rewind input, start rewind
-        if (rewindingTime)
+        if (isRewindingTime)
         {
             StartCoroutine(GetRewindTime());
         }
@@ -87,7 +87,7 @@ public class TimeController : MonoBehaviour
             rewindStartTime = Time.time;
 
             // Waiting for rewind to end
-            while (rewindingTime || player.GetComponent<RewindPlayer>().isFrozen)
+            while (isRewindingTime || player.GetComponent<RewindPlayer>().isFrozen)
             {
                 yield return null;
             }
@@ -108,7 +108,7 @@ public class TimeController : MonoBehaviour
     /// </summary>
     public void ChangeRewindTimeScale()
     {
-        if(rewindingTime)
+        if(isRewindingTime)
         {
             // Evaluate given time from rewind start point in time curve
             Time.timeScale = rewindTimeScaleCurve.Evaluate(Time.time - rewindStartTime);
@@ -228,7 +228,7 @@ public class TimePositionInput
     /// </summary>
     public void SetInput()
     {
-        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        PlayerControl player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 
         jumpInput = player.jumpInput;
         timeClearInput = player.timeClearInput;

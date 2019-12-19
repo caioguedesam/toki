@@ -6,8 +6,12 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     // Input variables
+    [SerializeField]
     private float horizontalInput, verticalInput;
     public bool jumpInput;
+    public bool interactInput;
+    public bool timeClearInput;
+    public bool rewindInput, stoppedRewindInput;
     public bool releasedJumpInput = false;
 
     // Player environment variables
@@ -35,10 +39,31 @@ public class PlayerControl : MonoBehaviour
 
     private void GetInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-        jumpInput = Input.GetButtonDown("Jump");
-        releasedJumpInput = Input.GetButtonUp("Jump");
+        if (!TimeController.Instance.isRewindingTime)
+        {
+            // Getting axis inputs
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            // Getting jump input
+            jumpInput = Input.GetButton("Jump");
+            releasedJumpInput = Input.GetButtonUp("Jump");
+            // Other inputs
+            timeClearInput = Input.GetButtonDown("Fire2");
+            interactInput = Input.GetButtonDown("Fire3");
+        }
+
+        // Getting rewind input
+        rewindInput = Input.GetButton("Fire1");
+        stoppedRewindInput = Input.GetButtonUp("Fire1");
+    }
+
+    public void SetInputFromPosition(TimePositionInput input)
+    {
+        jumpInput = input.jumpInput;
+        interactInput = input.interactInput;
+        timeClearInput = input.timeClearInput;
+        // Rewind shouldn't be set because this is called when rewinding!
+        //rewindInput = input.rewindInput;
     }
 
     private void Jump()
@@ -86,8 +111,16 @@ public class PlayerControl : MonoBehaviour
         Jump();
 
         //moveAmount.x = horizontalInput * moveSpeed;
+        // Calculate X movement based on smoothing function
         SmoothXMoveAmount();
+
+        // Move player the amount gravity would move each frame
         moveAmount.y += playerGravity * Time.deltaTime;
-        controller.Move(moveAmount * Time.deltaTime);
+
+        // If player is not rewinding time, move
+        if(!TimeController.Instance.isRewindingTime)
+        {
+            controller.Move(moveAmount * Time.deltaTime);
+        }
     }
 }

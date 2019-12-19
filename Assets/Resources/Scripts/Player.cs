@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     public void GetInput()
     {
         // Rewind dependant inputs are only set when not rewinding
-        if(!TimeController.Instance.rewindingTime)
+        if(!TimeController.Instance.isRewindingTime)
         {
             // Getting axis inputs
             horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
 
         GetInput();
 
-        if(!TimeController.Instance.rewindingTime)
+        if(!TimeController.Instance.isRewindingTime)
             Move(horizontalInput);
     }
 }

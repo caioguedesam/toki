@@ -381,17 +381,17 @@ PrefabInstance:
     - target: {fileID: 4370094871882922726, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.87
+      value: -4.79
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -1.65
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f269c50df1bf9524291786f0e2c0c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewindingTime: 0
+  isRewindingTime: 0
   rewindSeconds: 2
   stoppedRewind: 0
   rewindStartTime: 0
@@ -530,7 +530,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   stoppedRewindTimeFrame: 1
-  player: {fileID: 1623789843}
+  player: {fileID: 2146428219}
   cloneList: []
   maxCloneLimit: 1
   cloneRespawnSeconds: 1
@@ -1197,6 +1197,7 @@ GameObject:
   - component: {fileID: 2146428218}
   - component: {fileID: 2146428220}
   - component: {fileID: 2146428219}
+  - component: {fileID: 2146428221}
   m_Layer: 9
   m_Name: PlayerObj
   m_TagString: Player
@@ -1212,7 +1213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146428216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0.63, z: 0}
+  m_LocalPosition: {x: -3.11, y: -0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 859358227}
@@ -1258,8 +1259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpInput: 0
+  interactInput: 0
+  timeClearInput: 0
+  rewindInput: 0
+  stoppedRewindInput: 0
+  releasedJumpInput: 0
   moveSpeed: 5
-  jumpHeight: 2
+  maxJumpHeight: 4
+  minJumpHeight: 1
   timeToJumpPeak: 0.4
   accelerationTimeAirborne: 0.15
   accelerationTimeGrounded: 0.1
@@ -1292,6 +1299,24 @@ MonoBehaviour:
     slopeAngle: 0
     slopeAnglePast: 0
   moveAmountPast: {x: 0, y: 0, z: 0}
+--- !u!114 &2146428221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146428216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef4e0639145ce54a823129e02b18d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPositions: []
+  playerRecord: []
+  isFrozen: 0
+  canSpawnNewClone: 1
+  timeClonePrefab: {fileID: 2441577909339075126, guid: 173d34fb52556b44ebb336acd9572e2b,
+    type: 3}
 --- !u!1001 &4370094871165111034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1307,17 +1332,17 @@ PrefabInstance:
     - target: {fileID: 4370094871882922726, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.59
+      value: -8.42
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 4370094871882922727, guid: b5e46419ca805a840a73cb9f05d02057,
         type: 3}
@@ -1396,17 +1421,17 @@ PrefabInstance:
     - target: {fileID: 4511519498551499352, guid: dad511e2aa61b7249b20fe9551ed936a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4511519498551499353, guid: dad511e2aa61b7249b20fe9551ed936a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.45
+      value: -6.84
       objectReference: {fileID: 0}
     - target: {fileID: 4511519498551499353, guid: dad511e2aa61b7249b20fe9551ed936a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4511519498551499353, guid: dad511e2aa61b7249b20fe9551ed936a,
         type: 3}
