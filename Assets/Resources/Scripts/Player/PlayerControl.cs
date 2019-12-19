@@ -8,12 +8,15 @@ public class PlayerControl : MonoBehaviour
     // Input variables
     private float horizontalInput, verticalInput;
     public bool jumpInput;
+    public bool releasedJumpInput = false;
 
     // Player environment variables
     public float moveSpeed = 5f;
-    public float jumpHeight = 4f;
+    public float maxJumpHeight = 4f;
+    public float minJumpHeight = 1f;
     public float timeToJumpPeak = 0.4f;
-    private float jumpVelocity;
+    private float maxJumpVelocity;
+    private float minJumpVelocity;
     private float playerGravity;
     public float accelerationTimeAirborne = .15f;
     public float accelerationTimeGrounded = .1f;
@@ -35,6 +38,7 @@ public class PlayerControl : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         jumpInput = Input.GetButtonDown("Jump");
+        releasedJumpInput = Input.GetButtonUp("Jump");
     }
 
     private void Jump()
@@ -42,7 +46,13 @@ public class PlayerControl : MonoBehaviour
         // Allow jump if jump input is pressed and player is grounded
         if(jumpInput && controller.collisions.below)
         {
-            moveAmount.y = jumpVelocity;
+            moveAmount.y = maxJumpVelocity;
+        }
+
+        // If jump button is released in midair, end jump earlier (by adding the reduced minimum jump and stopping)
+        if(releasedJumpInput && moveAmount.y > minJumpVelocity)
+        {
+            moveAmount.y = minJumpVelocity;
         }
     }
 
@@ -51,8 +61,9 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     private void CalculateJumpVariables()
     {
-        playerGravity = (-2 * jumpHeight) / Mathf.Pow(timeToJumpPeak, 2);
-        jumpVelocity = Mathf.Abs(playerGravity) * timeToJumpPeak;
+        playerGravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToJumpPeak, 2);
+        maxJumpVelocity = Mathf.Abs(playerGravity) * timeToJumpPeak;
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(playerGravity) * minJumpHeight);
     }
 
     private void SmoothXMoveAmount()

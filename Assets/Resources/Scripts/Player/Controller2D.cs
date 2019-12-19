@@ -12,8 +12,9 @@ public class Controller2D : MonoBehaviour
     public int verticalRayCount = 4;
     // Layers to collide with
     public LayerMask collisionMask;
-    // Max angle able to climb slope
+    // Max angle able to climb/descend slope
     public float maxClimbAngle = 80f;
+    public float maxDescendAngle = 75f;
 
     // Collider
     private BoxCollider2D coll;
@@ -21,6 +22,8 @@ public class Controller2D : MonoBehaviour
     private RaycastOrigins raycastOrigins;
     // Object collision information
     public CollisionInfo collisions;
+    // Movement amount past frame information
+    public Vector3 moveAmountPast;
 
     // Space between collision raycasts
     private float horizontalRaySpacing, verticalRaySpacing;
@@ -71,7 +74,13 @@ public class Controller2D : MonoBehaviour
         // Recalculate ray origins and collision data every move call
         UpdateRaycastOrigins();
         collisions.Reset();
+        moveAmountPast = moveAmount;
 
+        // If y move amount is < 0, could be descending slope. Check and change if so
+        if(moveAmount.y < 0)
+        {
+            DescendSlope(ref moveAmount);
+        }
         // Get collision information based on move amount
         if (moveAmount.x != 0)
         {
@@ -116,6 +125,13 @@ public class Controller2D : MonoBehaviour
                 // If angle is climbable, climb
                 if (i == 0 && slopeAngle <= maxClimbAngle)
                 {
+                    // If was descending a slope before, not anymore. Fixes slowdown when descending and suddenly climbing.
+                    if(collisions.descendingSlope)
+                    {
+                        collisions.descendingSlope = false;
+                        moveAmount = moveAmountPast;
+                    }
+
                     float distanceToSlopeStart = 0f;
                     // If starting to climb a new slope, move distance to
                     // slope start (since ray collides before movement is done)
@@ -194,8 +210,35 @@ public class Controller2D : MonoBehaviour
                 collisions.above = (directionY == 1);
             }
         }
+
+        // To fix small stop when climbing a slope,
+        if(collisions.climbingSlope)
+        {
+            float directionX = Mathf.Sign(moveAmount.x);
+            rayLength = Mathf.Abs(moveAmount.x) + skinWidth;
+            // Cast a ray from origin where next y movement will go to (in order to see if there's a new slope when the current climb happens)
+            Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight) + Vector2.up * moveAmount.y;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+
+            if(hit)
+            {
+                // Getting new slope angle
+                float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                if(slopeAngle != collisions.slopeAngle)
+                {
+                    // Next update x movement will be only the distance between object and ray collided target slope
+                    moveAmount.x = (hit.distance - skinWidth) * directionX;
+                    collisions.slopeAngle = slopeAngle;
+                }
+            }
+        }
     }
 
+    /// <summary>
+    /// Method that handles slope climbing. Used in horizontal collisions.
+    /// </summary>
+    /// <param name="moveAmount">Amount to move in slope.</param>
+    /// <param name="slopeAngle">Given slope angle.</param>
     public void ClimbSlope(ref Vector3 moveAmount, float slopeAngle)
     {
         // The X original move amount is the new full move amount on slope;
@@ -219,6 +262,46 @@ public class Controller2D : MonoBehaviour
         }
     }
 
+    public void DescendSlope(ref Vector3 moveAmount)
+    {
+        float directionX = Mathf.Sign(moveAmount.x);
+        // Ray origin is always bottom side touching slope. If moving left, bottom right. If moving right, bottom left.
+        Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
+        // Cast ray to check for descending slopes
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, Mathf.Infinity, collisionMask);
+        if(hit)
+        {
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            // If target is not a flat surface and angle is not over max descend angle,
+            if(slopeAngle != 0 && slopeAngle <= maxDescendAngle)
+            {
+                // If slope is facing the same direction as player (descending slope)
+                if(Mathf.Sign(hit.normal.x) == directionX)
+                {
+                    // And if player is within range of slope (calculating y slope movement amount based on x movement and slope angle)
+                    // (complicated (but not really that complicated) trigonometry)
+                    if(hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad * Mathf.Abs(moveAmount.x)))
+                    {
+                        // y = sin(angle) * move amount (moveAmount.x)
+                        float moveDistance = Mathf.Abs(moveAmount.x);
+                        float slopeYMoveAmount = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+                        // x = cos(angle) * move amount (moveAmount.x)
+                        // on X calculation, keep the sign to indicate direction of slope movement
+                        float slopeXMoveAmount = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(moveAmount.x);
+                        
+                        // Movement in y is negative because it's going down the slope
+                        moveAmount.y -= slopeYMoveAmount;
+                        moveAmount.x = slopeXMoveAmount;
+
+                        collisions.slopeAngle = slopeAngle;
+                        collisions.descendingSlope = true;
+                        collisions.below = true;
+                    }
+                }
+            }
+        }
+    }
+
     public struct RaycastOrigins
     {
         public Vector2 topLeft, topRight, bottomLeft, bottomRight;
@@ -228,12 +311,12 @@ public class Controller2D : MonoBehaviour
     public struct CollisionInfo
     {
         public bool above, below, left, right;
-        public bool climbingSlope;
+        public bool climbingSlope, descendingSlope;
         public float slopeAngle, slopeAnglePast;
 
         public void Reset()
         {
-            above = below = left = right = climbingSlope = false;
+            above = below = left = right = climbingSlope = descendingSlope = false;
 
             slopeAnglePast = slopeAngle;
             slopeAngle = 0f;

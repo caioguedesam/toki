@@ -1212,7 +1212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146428216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.12, y: -0.82, z: 0}
+  m_LocalPosition: {x: 0.57, y: 0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 859358227}
@@ -1281,14 +1281,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxClimbAngle: 80
+  maxDescendAngle: 75
   collisions:
     above: 0
     below: 0
     left: 0
     right: 0
     climbingSlope: 0
+    descendingSlope: 0
     slopeAngle: 0
     slopeAnglePast: 0
+  moveAmountPast: {x: 0, y: 0, z: 0}
 --- !u!1001 &4370094871165111034
 PrefabInstance:
   m_ObjectHideFlags: 0
