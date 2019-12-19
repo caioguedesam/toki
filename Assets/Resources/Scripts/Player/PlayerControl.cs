@@ -114,12 +114,12 @@ public class PlayerControl : MonoBehaviour
         // Calculate X movement based on smoothing function
         SmoothXMoveAmount();
 
-        // Move player the amount gravity would move each frame
-        moveAmount.y += playerGravity * Time.deltaTime;
-
         // If player is not rewinding time, move
         if(!TimeController.Instance.isRewindingTime)
         {
+            // Move player the amount gravity would move each frame
+            moveAmount.y += playerGravity * Time.deltaTime;
+
             controller.Move(moveAmount * Time.deltaTime);
         }
     }
