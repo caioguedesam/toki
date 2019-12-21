@@ -15,8 +15,12 @@ public class Player : MonoBehaviour
 
     // Can player jump? Based on ground collisions
     public bool canJump = true;
+    // Can player go up ladder?
+    public bool canClimbLadder = false;
+
+    public bool isClimbingLadder = false, isHangingLadder = false, isDescendingLadder = false;
     // Ground collision reference
-    private GroundCollision coll;
+    public GroundCollision coll { get; private set; }
 
     // Rewinding time input
     [SerializeField]
@@ -28,31 +32,34 @@ public class Player : MonoBehaviour
 
     // Movement variables
     public float moveSpeed;
+    public float climbSpeed;
     public float jumpVelocity;
     public float fallMultiplier;
     public float deltatimeSpeedMagnitude = 10f;
 
     // Rigidbody reference
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<GroundCollision>();
+        rb.freezeRotation = true;
 
         // Fixing scale of movement variables with deltaTime
-        moveSpeed = moveSpeed * deltatimeSpeedMagnitude;
-        jumpVelocity = jumpVelocity * deltatimeSpeedMagnitude;
+        moveSpeed *= deltatimeSpeedMagnitude;
+        jumpVelocity *= deltatimeSpeedMagnitude;
+        climbSpeed *= deltatimeSpeedMagnitude;
     }
 
     public void GetInput()
     {
         // Rewind dependant inputs are only set when not rewinding
-        if(!TimeController.Instance.rewindingTime)
+        if(!TimeController.Instance.isRewindingTime)
         {
             // Getting axis inputs
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = 0f;
+            verticalInput = Input.GetAxisRaw("Vertical");
             // Getting jump input
             jumpInput = Input.GetButton("Jump");
 
@@ -80,10 +87,24 @@ public class Player : MonoBehaviour
 
         // Create move direction based on horizontal input and move speed
         Vector2 moveDirection = new Vector2(horizontalInput * moveSpeed * Time.deltaTime, rb.velocity.y);
+
+        if(isHangingLadder)
+        {
+            moveDirection = new Vector2(moveDirection.x, 0f);
+        }
+        else if(isClimbingLadder || isDescendingLadder)
+        {
+            moveDirection = new Vector2(moveDirection.x, verticalInput * climbSpeed * Time.deltaTime);
+        }
+
         // Move on direction
         rb.velocity = moveDirection;
+        Debug.Log(moveDirection);
 
-        // Better falling
+        if (isHangingLadder || isClimbingLadder || isDescendingLadder)
+            return;
+
+        // Better falling (only apply when out of ladder)
         if (rb.velocity.y <= 0)
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
@@ -110,7 +131,7 @@ public class Player : MonoBehaviour
 
         GetInput();
 
-        if(!TimeController.Instance.rewindingTime)
+        if(!TimeController.Instance.isRewindingTime)
             Move(horizontalInput);
     }
 }

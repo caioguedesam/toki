@@ -5,7 +5,7 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     // Player object reference
-    public Player player;
+    public PlayerControl player;
     // List of objects to activate with switch
     public List<GameObject> listOfObjects;
     // Will the button be activated?
@@ -19,7 +19,7 @@ public class Switch : MonoBehaviour
     private void Awake()
     {
         // Setting player reference
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
     }
 
     /// <summary>
@@ -50,6 +50,7 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log(collision.tag);
         // If player presses button, start switch activation
         if(collision.tag == "Player" && player.interactInput)
         {

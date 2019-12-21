@@ -18,7 +18,7 @@ public class RewindCameraShake : MonoBehaviour
 
             float currentShake;
 
-            while (TimeController.Instance.rewindingTime)
+            while (TimeController.Instance.isRewindingTime)
             {
                 float currentTime = Time.time - TimeController.Instance.rewindStartTime;
                 currentShake = Mathf.Lerp(0f, shakeMagnitude, currentTime);
@@ -39,7 +39,7 @@ public class RewindCameraShake : MonoBehaviour
 
     private void Update()
     {
-        if(TimeController.Instance.rewindingTime)
+        if(TimeController.Instance.isRewindingTime)
         {
             StartCoroutine(Shake());
         }

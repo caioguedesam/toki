@@ -73,7 +73,7 @@ public class Clone : MonoBehaviour
     private void FixedUpdate()
     {
         // Rewind is handled in FixedUpdate for framerate purposes.
-        if(!TimeController.Instance.rewindingTime)
+        if(!TimeController.Instance.isRewindingTime)
         {
             MoveClone();
         }

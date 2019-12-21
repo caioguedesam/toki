@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RewindPlayer : MonoBehaviour
 {
-    private Player player;
+    private PlayerControl player;
     // Player's stored positions
     public List<PlayerTimePosition> playerPositions;
     // Player record of positions (is sent to time clones)
@@ -19,15 +19,15 @@ public class RewindPlayer : MonoBehaviour
     // Time clone GameObject
     public GameObject timeClonePrefab;
     // Rigidbody2D ref
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
 
     private void Start()
     {
         // Setting references
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerControl>();
         playerPositions = new List<PlayerTimePosition>();
         playerRecord = new List<PlayerTimePosition>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ public class RewindPlayer : MonoBehaviour
         else
         {
             isFrozen = true;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
@@ -74,8 +74,8 @@ public class RewindPlayer : MonoBehaviour
             StartCoroutine(WaitToSpawnClone());
 
             // Clear the player record
-            playerRecord.Clear();
-            Debug.Log("Player Record Cleared!");
+            //playerRecord.Clear();
+            //Debug.Log("Player Record Cleared!");
         }
     }
 
@@ -102,13 +102,15 @@ public class RewindPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         // If time is rewinding, call rewind and spawn clone at the end
-        if (TimeController.Instance.rewindingTime)
+        if (TimeController.Instance.isRewindingTime)
         {
             PlayerRewind();
             if(isFrozen && canSpawnNewClone)
             {
                 SpawnClone();
+                playerRecord.Clear();
             }
                 
         }
@@ -118,10 +120,11 @@ public class RewindPlayer : MonoBehaviour
             if (stoppedRewind && canSpawnNewClone)
             {
                 SpawnClone();
+                playerRecord.Clear();
             }
             // If time isn't rewinding, player isn't frozen in time.
             isFrozen = false;
-            rb.constraints = RigidbodyConstraints2D.None;
+            //rb.constraints = RigidbodyConstraints2D.None;
 
             TimeController.Instance.ActivateAllClones();
 
@@ -129,7 +132,7 @@ public class RewindPlayer : MonoBehaviour
             TimeController.Instance.AddPosition(gameObject, playerPositions);
 
             // Not sure if I really need this. Address later on.
-            playerRecord.Clear();
+            //playerRecord.Clear();
         }
     }
 }

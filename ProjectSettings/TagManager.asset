@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TimeClone
   - Door
+  - Ladder
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - Interactable
   - 
   - 
   - 
