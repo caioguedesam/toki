@@ -41,7 +41,7 @@ public class Controller2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates Raycast Origins based on current collider bounds and skin width.
+    /// Updates raycast origins based on current collider bounds and skin width.
     /// </summary>
     private void UpdateRaycastOrigins()
     {
@@ -300,26 +300,26 @@ public class Controller2D : MonoBehaviour
                 }
             }
         }
-    }
+    } 
+}
 
-    public struct RaycastOrigins
+public struct RaycastOrigins
+{
+    public Vector2 topLeft, topRight, bottomLeft, bottomRight;
+}
+
+[System.Serializable]
+public struct CollisionInfo
+{
+    public bool above, below, left, right;
+    public bool climbingSlope, descendingSlope;
+    public float slopeAngle, slopeAnglePast;
+
+    public void Reset()
     {
-        public Vector2 topLeft, topRight, bottomLeft, bottomRight;
-    }
+        above = below = left = right = climbingSlope = descendingSlope = false;
 
-    [System.Serializable]
-    public struct CollisionInfo
-    {
-        public bool above, below, left, right;
-        public bool climbingSlope, descendingSlope;
-        public float slopeAngle, slopeAnglePast;
-
-        public void Reset()
-        {
-            above = below = left = right = climbingSlope = descendingSlope = false;
-
-            slopeAnglePast = slopeAngle;
-            slopeAngle = 0f;
-        }
+        slopeAnglePast = slopeAngle;
+        slopeAngle = 0f;
     }
 }
