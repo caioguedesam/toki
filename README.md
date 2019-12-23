@@ -7,7 +7,8 @@ This is a puzzle platforming game, in which you'll be a girl who mysteriously ge
 
 The game is in **VERY EARLY development**, and so this repository will be public to all. If the project's scope gets larger and commercial, it will become private.
 
-*(Gameplay example GIFs to be added!)*
+Examples of prototype gameplay (in development):
+![Early development gameplay](https://i.imgur.com/E6hNEXq.gif "early development gameplay")
 
 This project is made using the *[Unity Engine](https://unity.com/)*.
 
@@ -21,7 +22,7 @@ Esse é um jogo de quebra-cabeça e plataforma, no qual você é uma garota que 
 
 O jogo está em **desenvolvimento MUITO INICIAL**, e por enquanto esse repositório é público. Caso o escopo do projeto se torne maior e comercial, virará privado.
 
-*(GIFs de gameplay exemplo a serem adicionados!)*
+(GIFs de gameplay acima!)
 
 Esse projeto foi feito usando a *[Unity Engine](https://unity.com/)*.
 
