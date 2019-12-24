@@ -85,14 +85,12 @@ public class PressurePlate : MonoBehaviour
             // If ray hits something, it means plate should be activated
             if (hit)
             {
-                Debug.Log("Coll");
                 isActive = true;
                 break;
             }
             // If it doesn't hit, nothing is colliding with plate
             else
             {
-                Debug.Log("NoColl");
                 isActive = false;
             }
         }

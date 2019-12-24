@@ -86,8 +86,11 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     private void CalculateJumpVariables()
     {
+        // d = v0 * t + a * t²/2
         playerGravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToJumpPeak, 2);
+        // v = v0 + a * t
         maxJumpVelocity = Mathf.Abs(playerGravity) * timeToJumpPeak;
+        // v² = v0² + 2 * a * d
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(playerGravity) * minJumpHeight);
     }
 
