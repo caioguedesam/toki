@@ -10,6 +10,9 @@ public class Clone : MonoBehaviour
     public RewindPlayer playerRewind;
     // List of positions that clone must traverse
     public List<PlayerTimePosition> clonePositions;
+    public CloneXDirection cloneXDirection;
+
+    public bool isHoldingObject = false;
 
     private float cloneRewindTime = 0f;
     private float cloneSpawnTime = 0f;
@@ -25,6 +28,7 @@ public class Clone : MonoBehaviour
         clonePositions = new List<PlayerTimePosition>(playerRewind.playerRecord);
         cloneRewindTime = TimeController.Instance.lastRewindTime;
         cloneSpawnTime = TimeController.Instance.rewindStartTime;
+        cloneXDirection = CloneXDirection.noDirection;
 
         Debug.Log("playerrecord: " + playerRewind.playerRecord.Count);
         Debug.Log("clonepos: " + clonePositions.Count);
@@ -51,6 +55,10 @@ public class Clone : MonoBehaviour
         if(posIndex < clonePositions.Count)
         {
             transform.position = clonePositions[posIndex].position;
+
+            // Calculate Clone X Direction
+            CalculateCloneXDirection();
+
             // And increment index.
             posIndex++;
         }
@@ -67,6 +75,21 @@ public class Clone : MonoBehaviour
             // By decrementing index.
             posIndex--;
             transform.position = clonePositions[posIndex].position;
+
+            // Calculate Clone X Direction
+            CalculateCloneXDirection();
+        }
+    }
+
+    /// <summary>
+    /// Calculates clone's X direction based on most recent movement.
+    /// </summary>
+    private void CalculateCloneXDirection()
+    {
+        if (posIndex != 0)
+        {
+            float sign = Mathf.Sign(clonePositions[posIndex].position.x - clonePositions[posIndex - 1].position.x);
+            cloneXDirection = (sign == -1) ? CloneXDirection.left : CloneXDirection.right;
         }
     }
 
@@ -81,5 +104,10 @@ public class Clone : MonoBehaviour
         {
             RewindClone();
         }
+    }
+
+    public enum CloneXDirection
+    {
+        left, right, noDirection
     }
 }

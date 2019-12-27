@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe654c14f885eee43abc2364bf27fcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIndex: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1296,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdOffsetRight: {x: 0.5, y: 0.2}
   holdOffsetLeft: {x: -0.5, y: 0.2}
+  anchorDirection: 0
   gizmoRadius: 0.25
+  gizmoColor: {r: 1, g: 0.5235849, b: 0.7507589, a: 1}
 --- !u!50 &2146428223
 Rigidbody2D:
   serializedVersion: 4

@@ -144,6 +144,9 @@ public class TimeController : MonoBehaviour
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
     }
 
+    /// <summary>
+    /// Adds a new throwable position to the position list.
+    /// </summary>
     public void AddPosition(Throwable obj, List<ThrowableTimePosition> posArray)
     {
         // Making new position to store in list

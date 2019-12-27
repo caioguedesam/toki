@@ -19,6 +19,7 @@ public class Throwable : MonoBehaviour
 
     // References/others
     private GameObject holderObj;
+    private ThrowAnchor throwAnchor;
     private Controller2D controller;
     private float moveAmountXSmoothing;
 
@@ -53,6 +54,7 @@ public class Throwable : MonoBehaviour
         if(anchor != null)
         {
             holderObj = holder;
+            throwAnchor = holderObj.GetComponent<ThrowAnchor>();
             // Set holder as parent
             transform.parent = holderObj.transform;
             // Set new position to holding anchor
@@ -74,7 +76,7 @@ public class Throwable : MonoBehaviour
         {
             ThrowAnchor anchor = holderObj.GetComponent<ThrowAnchor>();
             transform.localPosition = anchor.currentOffset;
-            Debug.Log("positionupdated");
+            //Debug.Log("positionupdated");
         }
     }
 
@@ -83,10 +85,16 @@ public class Throwable : MonoBehaviour
     /// </summary>
     public void Throw()
     {
+        Debug.Log("Called throw");
         // Resets parent to null
         transform.parent = null;
         // Throws in given movement direction of holder's controller2D (NEEDS REDO FOR CLONES because no controller2D)
-        float sign = Mathf.Sign(holderObj.GetComponent<Controller2D>().moveAmountPast.x);
+        //float sign = Mathf.Sign(holderObj.GetComponent<Controller2D>().moveAmountPast.x);
+
+        // Throws in given anchor hold direction
+        float sign = throwAnchor.anchorDirection == ThrowAnchor.AnchorDirection.left ? -1 : 1;
+        
+        throwAnchor = null;
         holderObj = null;
         moveAmount.x = throwSpeed * sign;
         moveAmount.y = throwYVelocity;
