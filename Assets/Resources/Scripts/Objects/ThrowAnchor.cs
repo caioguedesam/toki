@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ThrowAnchor : MonoBehaviour
 {
+    // Anchor variables (one for left movement, one for right movement)
     public Vector2 holdOffsetRight;
     public Vector2 holdOffsetLeft;
     public Vector2 currentOffset { get; private set; }
-    public float gizmoRadius = 1f;
 
+    // Gizmo variables
+    public float gizmoRadius = 1f;
+    public Color gizmoColor = Color.green;
+
+    // References
     private Controller2D holderController;
 
     private void Awake()
@@ -17,6 +22,9 @@ public class ThrowAnchor : MonoBehaviour
         CalculateHoldPosition();
     }
 
+    /// <summary>
+    /// Calculates hold position based on holder controller's past move position (NEEDS REDO FOR CLONE)
+    /// </summary>
     private void CalculateHoldPosition()
     {
         float sign = Mathf.Sign(holderController.moveAmountPast.x);
@@ -30,9 +38,9 @@ public class ThrowAnchor : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere((Vector2)transform.position + holdOffsetLeft, gizmoRadius);
-        Gizmos.color = Color.green;
+        Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere((Vector2)transform.position + holdOffsetRight, gizmoRadius);
     }
 }

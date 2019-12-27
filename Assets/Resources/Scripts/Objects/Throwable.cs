@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Controller2D))]
 public class Throwable : MonoBehaviour
 {
+    // Throwable object variables
     private float gravity;
     private float throwYVelocity;
     public float throwHeight = 1f;
@@ -12,14 +13,17 @@ public class Throwable : MonoBehaviour
     public float throwSpeed;
     public float throwResistance;
 
+    // State variables
     public bool isBeingHeld = false;
     public bool wasJustPickedUp = false;
 
+    // References/others
     private GameObject holderObj;
     private Controller2D controller;
     private float moveAmountXSmoothing;
 
-    Vector3 moveAmount;
+    [HideInInspector]
+    public Vector3 moveAmount;
 
     private void Awake()
     {
@@ -28,27 +32,42 @@ public class Throwable : MonoBehaviour
         isBeingHeld = false;
     }
 
+    /// <summary>
+    /// Calculates throwable object physics variables based on REAL WORLD PHYSICS!!
+    /// </summary>
     private void CalculatePhysicsVariables()
     {
         gravity = (-2 * throwHeight) / Mathf.Pow(timeToThrowPeak, 2);
         throwYVelocity = Mathf.Abs(gravity) * timeToThrowPeak;
     }
 
+    /// <summary>
+    /// Picks up given throwable object
+    /// </summary>
+    /// <param name="holder">Holder to pick up object</param>
     public void PickUp(GameObject holder)
     {
         Debug.Log("called pickup");
+        // Get pick up anchor
         ThrowAnchor anchor = holder.GetComponent<ThrowAnchor>();
         if(anchor != null)
         {
             holderObj = holder;
+            // Set holder as parent
             transform.parent = holderObj.transform;
+            // Set new position to holding anchor
             transform.localPosition = anchor.currentOffset;
+            // Reset all throwable object collisions
             controller.collisions.Reset();
         }
 
+        // Resetting was just picked up (set in trigger)
         wasJustPickedUp = false;
     }
 
+    /// <summary>
+    /// Updates throwable position every update
+    /// </summary>
     private void UpdateThrowablePosition()
     {
         if(holderObj != null && isBeingHeld)
@@ -59,15 +78,23 @@ public class Throwable : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Throws throwable object
+    /// </summary>
     public void Throw()
     {
+        // Resets parent to null
         transform.parent = null;
+        // Throws in given movement direction of holder's controller2D (NEEDS REDO FOR CLONES because no controller2D)
         float sign = Mathf.Sign(holderObj.GetComponent<Controller2D>().moveAmountPast.x);
         holderObj = null;
         moveAmount.x = throwSpeed * sign;
         moveAmount.y = throwYVelocity;
     }
 
+    /// <summary>
+    /// Setting throw air resistance (X slowdown)
+    /// </summary>
     private void ThrowAirResistance()
     {
         if(Mathf.Abs(moveAmount.x) > 0 && controller.collisions.below)
@@ -93,7 +120,6 @@ public class Throwable : MonoBehaviour
         // If player is not rewinding time, move
         if (!TimeController.Instance.isRewindingTime && !isBeingHeld)
         {
-            Debug.Log(moveAmount.y);
             // Move player the amount gravity would move each frame
             moveAmount.y += gravity * Time.deltaTime;
 

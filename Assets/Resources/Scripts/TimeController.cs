@@ -144,6 +144,22 @@ public class TimeController : MonoBehaviour
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
     }
 
+    public void AddPosition(Throwable obj, List<ThrowableTimePosition> posArray)
+    {
+        // Making new position to store in list
+        ThrowableTimePosition pos = new ThrowableTimePosition();
+        pos.position = obj.transform.position;
+        pos.time = Time.time;
+        pos.isBeingHeld = obj.isBeingHeld;
+        pos.moveAmount = obj.moveAmount;
+
+        posArray.Add(pos);
+
+        // Continuously removing all positions outside time threshold
+        posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
+
+    }
+
     /// <summary>
     /// Adds a time clone to the controller's clone list.
     /// </summary>

@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     private float playerGravity;
     public float accelerationTimeAirborne = .15f;
     public float accelerationTimeGrounded = .1f;
+    public bool isHoldingObject = false;
 
     Vector3 moveAmount;
     private float moveAmountXSmoothing;
