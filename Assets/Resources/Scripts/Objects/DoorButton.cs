@@ -8,6 +8,10 @@ public class DoorButton : MonoBehaviour
     private PlayerControl player;
     // List of objects to activate with switch
     public List<GameObject> listOfDoors;
+    // Is the button timed?
+    public bool isTimed = false;
+    // Seconds for button timer
+    public float buttonTimer = 3f;
 
     // Delay time for next toggle on button
     public float buttonToggleDelayTime = 0.3f;
@@ -52,7 +56,14 @@ public class DoorButton : MonoBehaviour
             isButtonActivating = true;
 
             ActivateAllButtonObjects();
-            yield return new WaitForSeconds(buttonToggleDelayTime);
+            // If the button is timed, wait timer then re-toggle all objects
+            if(isTimed)
+            {
+                yield return new WaitForSeconds(buttonTimer);
+                ActivateAllButtonObjects();
+            }
+            else
+                yield return new WaitForSeconds(buttonToggleDelayTime);
 
             isButtonActivating = false;
         }
