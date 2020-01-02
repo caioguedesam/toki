@@ -13,6 +13,8 @@ public class RoomCameraConfiner : MonoBehaviour
         {
             Debug.Log("Changing cam");
             vcam.SetActive(true);
+            // Change shake camera component in TimeController instance
+            TimeController.Instance.GetComponent<CameraRewindShake>().cameraListener = vcam.GetComponent<CinemachineImpulseListener>();
         }
     }
 

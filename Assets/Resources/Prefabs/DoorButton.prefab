@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfDoors:
   - {fileID: 0}
-  buttonToggleDelayTime: 1
+  buttonToggleDelayTime: 0.3
 --- !u!1 &1207158495408345410
 GameObject:
   m_ObjectHideFlags: 0

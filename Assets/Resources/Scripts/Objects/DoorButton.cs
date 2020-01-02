@@ -10,7 +10,7 @@ public class DoorButton : MonoBehaviour
     public List<GameObject> listOfDoors;
 
     // Delay time for next toggle on button
-    public float buttonToggleDelayTime = 1f;
+    public float buttonToggleDelayTime = 0.3f;
     // Is switch being activated?
     private bool isButtonActivating = false;
 
@@ -21,8 +21,18 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && player.interactInput)
+        // Player pressed button
+        if (collision.CompareTag("Player") && player.interactInput)
             StartCoroutine(ToggleButton());
+        // Clone pressed button
+        else if(collision.CompareTag("TimeClone"))
+        {
+            Clone clone = collision.GetComponent<Clone>();
+            if(clone.clonePositions[clone.posIndex].input.interactInput)
+            {
+                StartCoroutine(ToggleButton());
+            }
+        }
     }
 
     private void ActivateAllButtonObjects()

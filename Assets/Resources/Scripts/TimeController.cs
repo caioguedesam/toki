@@ -133,7 +133,7 @@ public class TimeController : MonoBehaviour
         pos.input = new TimePositionInput();
 
         // If it's the player adding a new position, also store inputs
-        if(gameObj.tag == "Player")
+        if(gameObj.CompareTag("Player"))
         {
             pos.input.SetInput();
         }

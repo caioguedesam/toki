@@ -23,7 +23,7 @@ public class ThrowTrigger : MonoBehaviour
         // TODO: Bugfixes with objects keeping held state and not working
 
         // If trigger collides with player and player interacts
-        if (collision.tag == "Player" && player.interactInput)
+        if (collision.CompareTag("Player") && player.interactInput)
         {
             Debug.Log("Changed hold state");
             // If object is not being held and player isn't holding something else, pick up
@@ -49,7 +49,7 @@ public class ThrowTrigger : MonoBehaviour
             throwableObj.isBeingHeld = isBeingHeld;
         }
         // Else, if trigger collides with clone (and object is not being held by player TODO BUG: player might be holding another object)
-        else if(collision.tag == "TimeClone" && !isBeingHeldByPlayer)
+        else if(collision.CompareTag("TimeClone") && !isBeingHeldByPlayer)
         {
             Clone clone = collision.GetComponent<Clone>();
             bool cloneInteract = clone.clonePositions[clone.posIndex].input.interactInput;

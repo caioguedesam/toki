@@ -36,7 +36,7 @@ public class ThrowAnchor : MonoBehaviour
     private void CalculateHoldPosition()
     {
         // Different behavior for clones
-        if(this.tag == "TimeClone")
+        if(this.CompareTag("TimeClone"))
         {
             Clone clone = GetComponent<Clone>();
             currentOffset = clone.cloneXDirection == Clone.CloneXDirection.left ? holdOffsetLeft : holdOffsetRight;
