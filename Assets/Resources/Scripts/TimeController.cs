@@ -32,6 +32,7 @@ public class TimeController : MonoBehaviour
     public int stoppedRewindTimeFrame = 1;
     // Player reference
     public PlayerControl player;
+    public bool playerIsFrozen;
     // List of player time clones present in scene
     public List<GameObject> cloneList;
     // Maximum number of player time clones
@@ -223,6 +224,7 @@ public class TimeController : MonoBehaviour
     {
         CheckRewind();
         CheckDestroyClones();
+        playerIsFrozen = player.GetComponent<RewindPlayer>().isFrozen;
     }
 }
 

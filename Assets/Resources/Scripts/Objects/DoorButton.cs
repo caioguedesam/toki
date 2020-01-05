@@ -16,15 +16,21 @@ public class DoorButton : MonoBehaviour
     // Button timer variables
     public float buttonCurrentTime;
     private float buttonStartTime = 0f;
-    [SerializeField]
-    private float buttonEndTime = 0f;
-    [SerializeField]
-    private float minButtonTime;
+    //[SerializeField]
+    //private float buttonEndTime = 0f;
+    //[SerializeField]
+    //private float minButtonTime;
 
     // Delay time for next toggle on button
     public float buttonToggleDelayTime = 0.3f;
     // Is switch being activated?
     private bool isButtonActivating = false;
+
+    [SerializeField]
+    private float buttonTimeCount = 0f;
+    [SerializeField]
+    private float buttonPastTimeCount = 0f;
+    public bool isActive;
 
     private void Awake()
     {
@@ -33,21 +39,26 @@ public class DoorButton : MonoBehaviour
 
     private void Start()
     {
-        minButtonTime = 0f;
+        buttonTimeCount = Time.time;
+        isActive = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Player pressed button
         if (collision.CompareTag("Player") && player.interactInput)
-            StartCoroutine(ToggleButton());
+        {
+            //StartCoroutine(ToggleButton());
+            ToggleButton();
+        }
         // Clone pressed button
         else if(collision.CompareTag("TimeClone"))
         {
             Clone clone = collision.GetComponent<Clone>();
             if (clone.clonePositions[clone.posIndex-1].input.interactInput)
             {
-                StartCoroutine(ToggleButton());
+                //StartCoroutine(ToggleButton());
+                ToggleButton();
             }
         }
     }
@@ -59,24 +70,27 @@ public class DoorButton : MonoBehaviour
             Door door = listOfDoors[i].GetComponent<Door>();
             door.ActivateDoor();
         }
+        isActive = !isActive;
     }
 
-    private IEnumerator ToggleButton()
+    private void ToggleButton()
     {
         if(!isButtonActivating)
         {
             Debug.Log("Pressed Button!");
             isButtonActivating = true;
+            //buttonStartTime = Time.time;
+            buttonStartTime = buttonTimeCount;
 
             ActivateAllButtonObjects();
             // If the button is timed, wait timer then re-toggle all objects
-            if(isTimed)
+            /*if(isTimed)
             {
                 /*timerRunning = true;
                 buttonStartTime = Time.time;
                 yield return new WaitForSeconds(buttonTimer);
                 ActivateAllButtonObjects();
-                timerRunning = false*/
+                timerRunning = false
 
                 timerRunning = true;
                 buttonStartTime = Time.time;
@@ -87,16 +101,21 @@ public class DoorButton : MonoBehaviour
                 ActivateAllButtonObjects();
                 buttonEndTime = Time.time;
                 timerRunning = false;
+                buttonStartTime = Time.time;
+                if(buttonTimeCount > buttonStartTime + buttonTimer)
+                {
+                    ActivateAllButtonObjects();
+                }
             }
             else
-                yield return new WaitForSeconds(buttonToggleDelayTime);
+                yield return new WaitForSeconds(buttonToggleDelayTime);*/
 
             isButtonActivating = false;
         }
     }
 
     // HOLY SHIT THIS IS SO BAD REWORK THIS PLEASE
-    private void CalculateButtonCurrentTime()
+    /*private void CalculateButtonCurrentTime()
     {
         /*if (!timerRunning && !TimeController.Instance.isRewindingTime)
         {
@@ -113,7 +132,7 @@ public class DoorButton : MonoBehaviour
                 //minButtonTime = 0f;
             }
             
-        }*/
+        }
         if(!timerRunning)
         {
             buttonCurrentTime = 0f;
@@ -130,12 +149,55 @@ public class DoorButton : MonoBehaviour
             //Debug.Log("minbuttontime = " + minButtonTime);
             buttonCurrentTime = Mathf.Clamp(buttonCurrentTime - Time.deltaTime, minButtonTime, buttonTimer);
         }
+    }*/
+
+
+    private void UpdateButtonTimeCount()
+    {
+        buttonPastTimeCount = buttonTimeCount;
+        //buttonTimeCount = Time.time;
+    }
+    private void CheckButtonToggle()
+    {
+        if(isTimed && buttonStartTime != 0f)
+        {
+            bool buttonIsRewinding = (buttonTimeCount - buttonPastTimeCount < 0);
+            Debug.Log("is rewinding button: " + buttonIsRewinding);
+            if(buttonIsRewinding && !isActive && buttonTimeCount < buttonStartTime + buttonTimer && buttonTimeCount > buttonStartTime)
+            {
+                ActivateAllButtonObjects();
+            }
+            else if (buttonIsRewinding && isActive && buttonTimeCount < buttonStartTime)
+            {
+                ActivateAllButtonObjects();
+            }
+            else if(!buttonIsRewinding && isActive && buttonTimeCount > buttonStartTime + buttonTimer)
+            {
+                ActivateAllButtonObjects();
+            }
+        }
     }
 
     private void Update()
     {
-        CalculateButtonCurrentTime();
+        buttonPastTimeCount = buttonTimeCount;
+        //UpdateButtonTimeCount();
+        //CalculateButtonCurrentTime();
         //if(buttonCurrentTime != 0)
-            //Debug.Log(buttonCurrentTime);
+        //Debug.Log(buttonCurrentTime);
+
+        if (!TimeController.Instance.isRewindingTime)
+        {
+            buttonTimeCount += Time.deltaTime;
+        }
+        else
+        {
+            if(buttonTimeCount > 0 && !TimeController.Instance.playerIsFrozen)
+            {
+                buttonTimeCount -= Time.deltaTime;
+            }
+        }
+
+        CheckButtonToggle();
     }
 }

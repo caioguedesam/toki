@@ -2572,7 +2572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747354525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 182.7171, y: -0.5871837, z: 0}
+  m_LocalPosition: {x: 182.72989, y: -0.5871837, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1321429309}
@@ -5196,7 +5196,7 @@ PrefabInstance:
     - target: {fileID: 1207158494969475601, guid: 7abebf72d4b435241800c9d4e0553c79,
         type: 3}
       propertyPath: buttonTimer
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1207158494969475601, guid: 7abebf72d4b435241800c9d4e0553c79,
         type: 3}
@@ -5323,6 +5323,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   stoppedRewindTimeFrame: 1
   player: {fileID: 555995164}
+  playerIsFrozen: 0
   cloneList: []
   maxCloneLimit: 1
   cloneRespawnSeconds: 1
