@@ -43,19 +43,19 @@ public class PlayerControl : MonoBehaviour
         if (!TimeController.Instance.isRewindingTime)
         {
             // Getting axis inputs
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = Input.GetAxisRaw("Vertical");
+            //horizontalInput = Input.GetAxisRaw("Horizontal");
+            //verticalInput = Input.GetAxisRaw("Vertical");
             // Getting jump input
-            jumpInput = Input.GetButton("Jump");
-            releasedJumpInput = Input.GetButtonUp("Jump");
+            //jumpInput = Input.GetButton("Jump");
+            //releasedJumpInput = Input.GetButtonUp("Jump");
             // Other inputs
-            timeClearInput = Input.GetButtonDown("Fire2");
-            interactInput = Input.GetButtonDown("Fire3");
+            //timeClearInput = Input.GetButtonDown("Fire2");
+            //interactInput = Input.GetButtonDown("Fire3");
         }
 
         // Getting rewind input
-        rewindInput = Input.GetButton("Fire1");
-        stoppedRewindInput = Input.GetButtonUp("Fire1");
+        //rewindInput = Input.GetButton("Fire1");
+        //stoppedRewindInput = Input.GetButtonUp("Fire1");
     }
 
     public void SetInputFromPosition(TimePositionInput input)
@@ -65,6 +65,44 @@ public class PlayerControl : MonoBehaviour
         timeClearInput = input.timeClearInput;
         // Rewind shouldn't be set because this is called when rewinding!
         //rewindInput = input.rewindInput;
+    }
+
+    public void SetHorizontalInput(float input)
+    {
+        horizontalInput = input;
+    }
+
+    public void SetJumpInput(bool input)
+    {
+        jumpInput = input;
+        if(!input)
+        {
+            releasedJumpInput = true;
+        }
+    }
+
+    public void SetRewindInput(bool input)
+    {
+        rewindInput = input;
+        if(!input)
+        {
+            stoppedRewindInput = true;
+        }
+    }
+
+    public void SetInteractInput(bool input)
+    {
+        interactInput = input;
+    }
+
+    public void SetTimeClearInput(bool input)
+    {
+        timeClearInput = input;
+    }
+
+    public void EventChecker()
+    {
+        Debug.Log("event happened!");
     }
 
     private void Jump()
@@ -133,6 +171,6 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
+        //Debug.Log(collision.gameObject.tag);
     }
 }
