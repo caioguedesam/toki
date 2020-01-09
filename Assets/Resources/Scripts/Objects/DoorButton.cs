@@ -24,6 +24,7 @@ public class DoorButton : MonoBehaviour
     
     [SerializeField]
     private bool isActive;
+    public bool initialState;
 
     private void Awake()
     {
@@ -36,6 +37,13 @@ public class DoorButton : MonoBehaviour
         buttonCurrentFrameTime = Time.time;
         // And active state begins false
         isActive = false;
+        initialState = isActive;
+    }
+
+    public void ResetObj()
+    {
+        Debug.Log("Resetting button");
+        isActive = initialState;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
