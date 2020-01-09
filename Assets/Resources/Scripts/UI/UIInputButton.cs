@@ -10,6 +10,7 @@ public class UIInputButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     protected PlayerControl player;
 
     public bool buttonHeldState = false;
+    protected bool currentHeldState;
     public bool pastHeldState;
     public bool buttonReleased = false;
 

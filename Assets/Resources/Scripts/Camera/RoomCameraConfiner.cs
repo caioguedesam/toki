@@ -6,6 +6,12 @@ using Cinemachine;
 public class RoomCameraConfiner : MonoBehaviour
 {
     public GameObject vcam;
+    [SerializeField] private int roomIndex;
+
+    private void Start()
+    {
+        roomIndex = GetComponentInParent<RoomData>().roomIndex;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +21,10 @@ public class RoomCameraConfiner : MonoBehaviour
             vcam.SetActive(true);
             // Change shake camera component in TimeController instance
             TimeController.Instance.GetComponent<CameraRewindShake>().cameraListener = vcam.GetComponent<CinemachineImpulseListener>();
+
+            // Setting level data for new room entered
+            Debug.Log("Setting new room index " + roomIndex);
+            LevelDataHolder.Instance.currentRoomIndex = roomIndex;
         }
     }
 

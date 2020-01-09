@@ -164,9 +164,6 @@ public class PlayerControl : MonoBehaviour
 
             controller.Move(moveAmount * Time.deltaTime);
         }
-
-        if(interactInput)
-            Debug.Log(interactInput);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
