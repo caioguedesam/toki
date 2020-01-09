@@ -7,8 +7,7 @@ public class InteractButton : UIInputButton
 
     protected override void Update()
     {
-        pastHeldState = currentHeldState;
-        currentHeldState = buttonHeldState;
+        base.Update();
 
         if (currentHeldState && !pastHeldState)
             player.interactInput = true;

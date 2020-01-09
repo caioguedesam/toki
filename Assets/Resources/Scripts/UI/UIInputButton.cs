@@ -9,10 +9,10 @@ public class UIInputButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     protected PlayerControl player;
 
-    public bool buttonHeldState = false;
-    protected bool currentHeldState;
-    public bool pastHeldState;
-    public bool buttonReleased = false;
+    protected bool buttonHeldState = false;
+    public bool currentHeldState { get; protected set; } = false;
+    public bool pastHeldState { get; protected set; }
+    public bool buttonReleased { get; protected set; } = false;
 
     private void Awake()
     {
@@ -31,24 +31,12 @@ public class UIInputButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     protected virtual void Update()
     {
-        if (buttonHeldState)
-        {
-            //pastHeldState = true;
-        }   
-        else
-        {
-            if(pastHeldState)
-            {
-                Debug.Log("button released");
-                buttonReleased = true;
-                //pastHeldState = false;
-            }
-            else
-            {
-                buttonReleased = false;
-            }
-        }
+        pastHeldState = currentHeldState;
+        currentHeldState = buttonHeldState;
 
-        pastHeldState = buttonHeldState;
+        if (!currentHeldState && pastHeldState)
+            buttonReleased = true;
+        else
+            buttonReleased = false;
     }
 }

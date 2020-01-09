@@ -9,7 +9,7 @@ public class RoomData : MonoBehaviour
 
     // Room data
     private DoorButton[] doorButtons;
-    [SerializeField] private Door[] doors;
+    private Door[] doors;
 
     private void Awake()
     {
