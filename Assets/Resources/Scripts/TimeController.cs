@@ -32,6 +32,7 @@ public class TimeController : MonoBehaviour
     public int stoppedRewindTimeFrame = 1;
     // Player reference
     public PlayerControl player;
+    public bool playerIsFrozen;
     // List of player time clones present in scene
     public List<GameObject> cloneList;
     // Maximum number of player time clones
@@ -133,7 +134,7 @@ public class TimeController : MonoBehaviour
         pos.input = new TimePositionInput();
 
         // If it's the player adding a new position, also store inputs
-        if(gameObj.tag == "Player")
+        if(gameObj.CompareTag("Player"))
         {
             pos.input.SetInput();
         }
@@ -142,6 +143,25 @@ public class TimeController : MonoBehaviour
 
         // Continuously removing all positions outside time threshold
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
+    }
+
+    /// <summary>
+    /// Adds a new throwable position to the position list.
+    /// </summary>
+    public void AddPosition(Throwable obj, List<ThrowableTimePosition> posArray)
+    {
+        // Making new position to store in list
+        ThrowableTimePosition pos = new ThrowableTimePosition();
+        pos.position = obj.transform.position;
+        pos.time = Time.time;
+        pos.isBeingHeld = obj.isBeingHeld;
+        pos.moveAmount = obj.moveAmount;
+
+        posArray.Add(pos);
+
+        // Continuously removing all positions outside time threshold
+        posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
+
     }
 
     /// <summary>
@@ -204,6 +224,7 @@ public class TimeController : MonoBehaviour
     {
         CheckRewind();
         CheckDestroyClones();
+        playerIsFrozen = player.GetComponent<RewindPlayer>().isFrozen;
     }
 }
 

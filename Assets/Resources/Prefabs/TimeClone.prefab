@@ -89,8 +89,9 @@ GameObject:
   - component: {fileID: 2441577909339075120}
   - component: {fileID: 2441577909339075121}
   - component: {fileID: 2441577909339075122}
-  - component: {fileID: 2441577909339075124}
   - component: {fileID: 6110658529903500928}
+  - component: {fileID: 2203639887579082499}
+  - component: {fileID: 6836741801688947736}
   m_Layer: 9
   m_Name: TimeClone
   m_TagString: TimeClone
@@ -160,24 +161,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2441577909339075124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2441577909339075126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37664b0f735926a42afea531a7793b0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  isGrounded: 0
-  collisionRadius: 0.25
-  bottomOffset: {x: 0, y: -0.5}
 --- !u!114 &6110658529903500928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,4 +175,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRewind: {fileID: 0}
   clonePositions: []
+  cloneXDirection: 0
   posIndex: 0
+--- !u!114 &2203639887579082499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441577909339075126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099ab014436b7334aad3f44ea678e17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  maxClimbAngle: 80
+  maxDescendAngle: 75
+  collisions:
+    above: 0
+    below: 0
+    left: 0
+    right: 0
+    climbingSlope: 0
+    descendingSlope: 0
+    slopeAngle: 0
+    slopeAnglePast: 0
+  moveAmountPast: {x: 0, y: 0, z: 0}
+--- !u!114 &6836741801688947736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441577909339075126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5397a58e822180c4f909ed84e9cd5108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdOffsetRight: {x: 0.5, y: 0.2}
+  holdOffsetLeft: {x: -0.5, y: 0.2}
+  gizmoRadius: 0.25
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}

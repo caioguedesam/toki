@@ -9,6 +9,7 @@ TagManager:
   - Ladder
   - Ground
   - Graphics
+  - Spawn
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3603654937
     locked: 0
