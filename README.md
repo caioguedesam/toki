@@ -5,10 +5,10 @@ This is a project inspired by the webcomic *[Homestuck](https://www.homestuck.co
 
 This is a puzzle platforming game, in which you'll be a girl who mysteriously gets time manipulation powers and has to use alternate timeline versions of herself to solve puzzles.
 
-The game is in **VERY EARLY development**, and so this repository will be public to all. If the project's scope gets larger and commercial, it will become private.
+The game is in **EARLY development**, and so this repository will be public to all. If the project's scope gets larger and/or commercial, it will become private.
 
-Examples of prototype gameplay (in development):
-![Early development gameplay](https://i.imgur.com/E6hNEXq.gif "early development gameplay")
+Example of prototype gameplay (in development):
+![](https://i.imgur.com/HCy0byD.gif "early development gameplay")
 
 This project is made using the *[Unity Engine](https://unity.com/)*.
 
@@ -20,7 +20,7 @@ Esse projeto é inspirado pela webcomic *[Homestuck](https://www.homestuck.com/)
 
 Esse é um jogo de quebra-cabeça e plataforma, no qual você é uma garota que misteriosamente recebe poderes temporais e tem que usar versões dela mesma de linhas do tempo alternativas para resolver quebra-cabeças.
 
-O jogo está em **desenvolvimento MUITO INICIAL**, e por enquanto esse repositório é público. Caso o escopo do projeto se torne maior e comercial, virará privado.
+O jogo está em **desenvolvimento INICIAL**, e por enquanto esse repositório é público. Caso o escopo do projeto se torne maior e/ou comercial, virará privado.
 
 (GIFs de gameplay acima!)
 
