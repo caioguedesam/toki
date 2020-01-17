@@ -1,0 +1,739 @@
+fileFormatVersion: 2
+guid: 69bf46500b663c7449b7cf971467cd18
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2370603860528661923
+    second: elena_idle1
+  - first:
+      213: -5123210265212477042
+    second: elena_idle2
+  - first:
+      213: 6463274708269251373
+    second: elena_idle3
+  - first:
+      213: -2301279732225493242
+    second: elena_run1
+  - first:
+      213: 3351793107377235663
+    second: elena_run2
+  - first:
+      213: 3841175900169973974
+    second: elena_run3
+  - first:
+      213: 7042298464793248857
+    second: elena_run4
+  - first:
+      213: 8185161914324948325
+    second: elena_run5
+  - first:
+      213: -7767408096596584982
+    second: elena_run6
+  - first:
+      213: 4829774433269219732
+    second: elena_run7
+  - first:
+      213: -1429941675530727314
+    second: elena_run8
+  - first:
+      213: -3093812341946167377
+    second: elena_run9
+  - first:
+      213: 6158378429476556922
+    second: elena_run10
+  - first:
+      213: -5519797817998046135
+    second: elena_run11
+  - first:
+      213: -7951269554897450698
+    second: elena_run12
+  - first:
+      213: -4339857874530189613
+    second: elena_jump1
+  - first:
+      213: 1328905583171479775
+    second: elena_jump2
+  - first:
+      213: -2074666678589321206
+    second: elena_fall1
+  - first:
+      213: -196595618291424440
+    second: elena_fall2
+  - first:
+      213: 6927835970042539795
+    second: elena_fall3
+  - first:
+      213: -2254542113926259771
+    second: elena_fall4
+  - first:
+      213: -8348107183226135814
+    second: elena_land1
+  - first:
+      213: 9010735841836390517
+    second: elena_land2
+  - first:
+      213: -7261143877194940867
+    second: elena_land3
+  - first:
+      213: -3904739055745675037
+    second: elena_press1
+  - first:
+      213: -8301182650383029780
+    second: elena_press2
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elena_idle1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680b4845cf0a29a4e8bdf800a5808c12
+      internalID: -2370603860528661923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_idle2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed48b7536bc94c44ade1c8b55272967
+      internalID: -5123210265212477042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_idle3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187d005a53caf8e46b5e2e742e1c5b98
+      internalID: 6463274708269251373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 565de543438c41241ba25d80645ab57f
+      internalID: -2301279732225493242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfbb5888b695e14993cf832be3c14a0
+      internalID: 3351793107377235663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd856d6d2276f9440a8fec026d6bcd0a
+      internalID: 3841175900169973974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab775fee53e7ff4294bf72bdcaf65b7
+      internalID: 7042298464793248857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run5
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 108
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9062d5b1bc4334e9692f66980d7402
+      internalID: 8185161914324948325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c977e51188aa84d4b9d7b61c95344e8f
+      internalID: -7767408096596584982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run7
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fa38ea869a0bb147a765f00a0d4ac8a
+      internalID: 4829774433269219732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5c812b3afa9214b9aef1e2ea480d16
+      internalID: -1429941675530727314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run9
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dca09ec56af5c142b80f5ea5fc1d1d2
+      internalID: -3093812341946167377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0d9f0d8691410478fc3e642a0069a7
+      internalID: 6158378429476556922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06afc5d7f49d4884b95a7ac7cbb056e7
+      internalID: -5519797817998046135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_run12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d48c631772f694d9d4359a6aae7029
+      internalID: -7951269554897450698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_jump1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0d896d828f2b94fbae4a2322b94e88
+      internalID: -4339857874530189613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_jump2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 337048f3eca037a4fa30fd640ca2185c
+      internalID: 1328905583171479775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_fall1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b0b6b2c7959e246b234bf816bf1174
+      internalID: -2074666678589321206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_fall2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: face0219ae5147545ab12c5cb11e0d7f
+      internalID: -196595618291424440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_fall3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 746706d5fccc3c844905b3d0520f30ec
+      internalID: 6927835970042539795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_fall4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4a056ef139f4149af0fbcae9be5ea5
+      internalID: -2254542113926259771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_land1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ed4cbcb4c12bd449c64d2810c47760
+      internalID: -8348107183226135814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_land2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc62673dd65dbef459ba43cdf9797592
+      internalID: 9010735841836390517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_land3
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 36
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceb5a9f006b7dab48b1305ce12f8cc09
+      internalID: -7261143877194940867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_press1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a25392d04b6953e4db6d262696f18a8e
+      internalID: -3904739055745675037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elena_press2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef01181570688da44908c20f9826a0a5
+      internalID: -8301182650383029780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

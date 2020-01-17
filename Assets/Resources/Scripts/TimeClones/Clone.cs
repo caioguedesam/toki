@@ -19,6 +19,9 @@ public class Clone : MonoBehaviour
     // Current position in position list that clone is assigned to
     public int posIndex = 0;
 
+    // Clone sprite renderer
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         // Setting references
@@ -29,6 +32,8 @@ public class Clone : MonoBehaviour
         cloneRewindTime = TimeController.Instance.lastRewindTime;
         cloneSpawnTime = TimeController.Instance.rewindStartTime;
         cloneXDirection = CloneXDirection.noDirection;
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         Debug.Log("playerrecord: " + playerRewind.playerRecord.Count);
         Debug.Log("clonepos: " + clonePositions.Count);
@@ -55,6 +60,8 @@ public class Clone : MonoBehaviour
         if(posIndex < clonePositions.Count)
         {
             transform.position = clonePositions[posIndex].position;
+            spriteRenderer.sprite = clonePositions[posIndex].sprite;
+            spriteRenderer.flipX = !clonePositions[posIndex].facingRight;
 
             // Calculate Clone X Direction
             CalculateCloneXDirection();
@@ -75,6 +82,8 @@ public class Clone : MonoBehaviour
             // By decrementing index.
             posIndex--;
             transform.position = clonePositions[posIndex].position;
+            spriteRenderer.sprite = clonePositions[posIndex].sprite;
+            spriteRenderer.flipX = !clonePositions[posIndex].facingRight;
 
             // Calculate Clone X Direction
             CalculateCloneXDirection();

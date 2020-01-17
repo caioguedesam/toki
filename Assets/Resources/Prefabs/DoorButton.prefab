@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1207158494969475601}
   m_Layer: 11
   m_Name: DoorButton
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207158494969475602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.15, y: -1.62, z: 0}
+  m_LocalPosition: {x: -5.15, y: -1.62, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1207158495408345411}
@@ -63,7 +63,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfDoors:
   - {fileID: 0}
+  isTimed: 0
+  buttonTimer: 3
+  buttonStartTime: 0
   buttonToggleDelayTime: 0.3
+  pressParticle: {fileID: 6977494367343538693, guid: 8bfe3462b0cb3cb409c602162fb8fbcd,
+    type: 3}
+  isActive: 0
+  initialState: 0
 --- !u!1 &1207158495408345410
 GameObject:
   m_ObjectHideFlags: 0

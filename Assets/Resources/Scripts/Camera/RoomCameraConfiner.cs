@@ -24,9 +24,12 @@ public class RoomCameraConfiner : MonoBehaviour
 
             // Setting level data for new room entered
             Debug.Log("Setting new room index " + roomIndex);
+            if(roomIndex != LevelDataHolder.Instance.currentRoomIndex)
+            {
+                // Deleting clones from past room
+                TimeController.Instance.DestroyAllClones();
+            }
             LevelDataHolder.Instance.currentRoomIndex = roomIndex;
-            // Deleting clones from past room
-            TimeController.Instance.DestroyAllClones();
         }
     }
 

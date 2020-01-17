@@ -21,6 +21,10 @@ public class DoorButton : MonoBehaviour
 
     // Delay time for next toggle on button
     public float buttonToggleDelayTime = 0.3f;
+
+    // Button press particle
+    public ParticleSystem pressParticle;
+
     
     [SerializeField]
     private bool isActive;
@@ -55,6 +59,7 @@ public class DoorButton : MonoBehaviour
             if (isTimed && isActive)
                 return;
             StartCoroutine(ToggleButton());
+            player.CheckPressAnimation();
         }
         // Clone pressed button
         else if(collision.CompareTag("TimeClone"))
@@ -80,6 +85,10 @@ public class DoorButton : MonoBehaviour
         }
         // Change button state every call to this method
         isActive = !isActive;
+
+        // Instantiating button press particles
+        ParticleSystem particle = GameObject.Instantiate(pressParticle, transform);
+        particle.transform.position = transform.position + new Vector3(0,0, 100);
     }
 
     /// <summary>

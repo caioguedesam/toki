@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public bool timeClearInput;
     public bool rewindInput, stoppedRewindInput;
     public bool releasedJumpInput = false;
+    public bool facingRight = true;
 
     // Player environment variables
     public float moveSpeed = 5f;
@@ -31,10 +32,12 @@ public class PlayerControl : MonoBehaviour
 
     // Player references
     Controller2D controller;
+    private Animator animator;
 
     private void Awake()
     {
         controller = GetComponent<Controller2D>();
+        animator = GetComponentInChildren<Animator>();
         CalculateJumpVariables();
     }
 
@@ -140,8 +143,16 @@ public class PlayerControl : MonoBehaviour
             (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
     }
 
+    public void FlipSpriteHorizontal()
+    {
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        // If facing left, flip sprite
+        spriteRenderer.flipX = !facingRight;
+    }
+
     private void Update()
     {
+        ActivateAnimator();
         GetInput();
 
         // Resetting y movement if collided vertically (grounded)
@@ -163,11 +174,39 @@ public class PlayerControl : MonoBehaviour
             moveAmount.y += playerGravity * Time.deltaTime;
 
             controller.Move(moveAmount * Time.deltaTime);
+            // Setting horizontal movement animation
+            animator.SetFloat("horizontalMove", Mathf.Abs(moveAmount.x));
+            if(moveAmount.x > 0 && !facingRight)
+            {
+                facingRight = true;
+            }
+            else if(moveAmount.x < 0 && facingRight)
+            {
+                facingRight = false;
+            }
+            // Setting vertical movement animation
+            animator.SetFloat("verticalMove", moveAmount.y);
         }
+
+        FlipSpriteHorizontal();
+
+        // Setting grounded animation bool
+        animator.SetBool("isGrounded", controller.collisions.below);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /// <summary>
+    /// Checks to see if the animator for the player should be active relative to time rewind.
+    /// </summary>
+    private void ActivateAnimator()
     {
-        //Debug.Log(collision.gameObject.tag);
+        animator.enabled = !TimeController.Instance.isRewindingTime;
+    }
+
+    public void CheckPressAnimation()
+    {
+        if(interactInput)
+        {
+            animator.SetTrigger("pressed");
+        }
     }
 }

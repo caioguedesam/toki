@@ -42,6 +42,10 @@ public class RewindPlayer : MonoBehaviour
             transform.position = currentPos.position;
             // Set player inputs along with position
             player.SetInputFromPosition(currentPos.input);
+            // Setting sprite
+            Debug.Log(currentPos.sprite.name);
+            player.GetComponentInChildren<SpriteRenderer>().sprite = currentPos.sprite;
+            player.facingRight = currentPos.facingRight;
             // Insert the position on the record for the clone
             playerRecord.Insert(0, currentPos);
             // Remove the position from the stored list
