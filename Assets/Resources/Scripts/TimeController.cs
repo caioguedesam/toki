@@ -132,6 +132,12 @@ public class TimeController : MonoBehaviour
         pos.position = gameObj.transform.position;
         pos.time = Time.time;
         pos.input = new TimePositionInput();
+        
+
+        // Sprite handling
+        SpriteRenderer renderer = gameObj.GetComponentInChildren<SpriteRenderer>();
+        pos.sprite = renderer.sprite;
+        pos.facingRight = gameObj.GetComponent<PlayerControl>().facingRight;
 
         // If it's the player adding a new position, also store inputs
         if(gameObj.CompareTag("Player"))
@@ -234,6 +240,8 @@ public class PlayerTimePosition
     public Vector3 position;
     public float time;
     public TimePositionInput input;
+    public Sprite sprite;
+    public bool facingRight;
 }
 
 [System.Serializable]
