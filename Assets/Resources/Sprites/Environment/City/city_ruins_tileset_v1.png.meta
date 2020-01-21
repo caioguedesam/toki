@@ -1,0 +1,1152 @@
+fileFormatVersion: 2
+guid: 9a5cf30f432047547a80ea937ef9b570
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1110687734407462861
+    second: city_ruins_top_left
+  - first:
+      213: 4181062217400416325
+    second: city_ruins_top_center
+  - first:
+      213: 6389427140129561603
+    second: city_ruins_top_right
+  - first:
+      213: 4715678016389868487
+    second: city_ruins_thin_top
+  - first:
+      213: 2753140701862631572
+    second: city_ruins_corner_top_left
+  - first:
+      213: 7216679750013276149
+    second: city_ruins_corner_top_right
+  - first:
+      213: 1296133106566619764
+    second: city_ruins_tileset_v1_6
+  - first:
+      213: 2882881116532345521
+    second: city_ruins_middle
+  - first:
+      213: -6012678938164250600
+    second: city_ruins_tileset_v1_8
+  - first:
+      213: 4253340047478202446
+    second: city_ruins_thin_middle
+  - first:
+      213: -8616360009698071908
+    second: city_ruins_corner_bottom_left
+  - first:
+      213: 7118536982780499334
+    second: city_ruins_corner_bottom_right
+  - first:
+      213: -5555028863562502930
+    second: city_ruins_bottom_left
+  - first:
+      213: -8182674374919175253
+    second: city_ruins_bottom_center
+  - first:
+      213: 3845377419114917263
+    second: city_ruins_bottom_right
+  - first:
+      213: -3655486665069692065
+    second: city_ruins_tileset_v1_15
+  - first:
+      213: -5091181921816154693
+    second: city_ruins_long_slope_up_left_1
+  - first:
+      213: 2383799526953361157
+    second: city_ruins_long_slope_up_left_2
+  - first:
+      213: 2362286211301819550
+    second: city_ruins_long_slope_up_right_2
+  - first:
+      213: 8026505368450843825
+    second: city_ruins_tileset_v1_19
+  - first:
+      213: -9149726003791790739
+    second: city_ruins_flat_left
+  - first:
+      213: 6409535711723105879
+    second: city_ruins_flat_middle
+  - first:
+      213: -8693933646220152664
+    second: city_ruins_flat_right
+  - first:
+      213: -6291791347246503019
+    second: city_ruins_block
+  - first:
+      213: -6350038735689145405
+    second: city_ruins_long_slope_back_up_right
+  - first:
+      213: 445773448316049420
+    second: city_ruins_long_slope_back_up_left
+  - first:
+      213: -2418215420080043163
+    second: city_ruins_short_slope_up_left
+  - first:
+      213: 4855472599334017425
+    second: city_ruins_short_slope_up_right
+  - first:
+      213: -3525049978846353422
+    second: city_ruins_long_slope_back_down_right
+  - first:
+      213: -2019636230634034801
+    second: city_ruins_long_slope_back_down_left
+  - first:
+      213: -4528529697477894926
+    second: city_ruins_long_slope_down_left_1
+  - first:
+      213: 9154705419203447531
+    second: city_ruins_long_slope_down_left_2
+  - first:
+      213: -3899001276716220723
+    second: city_ruins_long_slope_down_right_2
+  - first:
+      213: 2764826045628098109
+    second: city_ruins_tileset_v1_39
+  - first:
+      213: 4841917368072888962
+    second: city_ruins_short_slope_down_left
+  - first:
+      213: 493615448531037215
+    second: city_ruins_short_slope_down_right
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: city_ruins_top_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: -8}
+        - {x: -7, y: 5}
+        - {x: -4, y: 7}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0c927bed0a624478367a9de40d1c45
+      internalID: 1110687734407462861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_top_center
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e83a28d3024e75f4bbbcc22c94c29d45
+      internalID: 4181062217400416325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_top_right
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: 5, y: 7}
+        - {x: 7, y: 5}
+        - {x: 7, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a540f80fe98ae49acd698c3d3c5210
+      internalID: 6389427140129561603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_thin_top
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: -8}
+        - {x: -7, y: 5}
+        - {x: -4, y: 7}
+        - {x: 5, y: 7}
+        - {x: 7, y: 5}
+        - {x: 7, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6428edfda71b342b91afbd0b0c29da
+      internalID: 4715678016389868487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_corner_top_left
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -6}
+        - {x: 6, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4945c32d62b2dd42b883bc8bc58735b
+      internalID: 2753140701862631572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_corner_top_right
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: -8}
+        - {x: -8, y: -6}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95013723b1b6404eb4cc47f0bc18391
+      internalID: 7216679750013276149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_tileset_v1_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: -8}
+        - {x: -7, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a4de578dd474a4c838a0aa15b6caaf
+      internalID: 1296133106566619764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_middle
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c16fa24de2e20a94a97f0dea10f6dae5
+      internalID: 2882881116532345521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_tileset_v1_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 7, y: 8}
+        - {x: 7, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9142bbd81c7ea4a816cd22be39a06b
+      internalID: -6012678938164250600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_thin_middle
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: -8}
+        - {x: -7, y: 8}
+        - {x: 7, y: 8}
+        - {x: 7, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6960597feabf58e4e9576d03eb85eb14
+      internalID: 4253340047478202446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_corner_bottom_left
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 6, y: 8}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 534dede9af6440a4188102c54675fe16
+      internalID: -8616360009698071908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_corner_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: -6, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964a3623440e66941a2a7623ec21f6a5
+      internalID: 7118536982780499334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_bottom_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: -6}
+        - {x: -7, y: -4}
+        - {x: -7, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02dd0b1979f265644a2b6707d2cdb392
+      internalID: -5555028863562502930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_bottom_center
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -6}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d124701f50e83784bbc40d9814eabc83
+      internalID: -8182674374919175253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: -6}
+        - {x: -8, y: -6}
+        - {x: -8, y: 8}
+        - {x: 7, y: 8}
+        - {x: 7, y: -4}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b15630648052f54fb38ec29fcdba5ab
+      internalID: 3845377419114917263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_tileset_v1_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: -6}
+        - {x: -7, y: -4}
+        - {x: -7, y: 8}
+        - {x: 7, y: 8}
+        - {x: 7, y: -5}
+        - {x: 2, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44cd44d747922c14d9043603a1a87300
+      internalID: -3655486665069692065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_up_left_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: -4, y: 1}
+        - {x: 5, y: 0}
+        - {x: 8, y: -3}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04cbd1c929842043b60336e1065525c
+      internalID: -5091181921816154693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_up_left_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: -3}
+        - {x: -2, y: -3}
+        - {x: 3, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ce6796b5754fe4fb8ccfe47b947d66
+      internalID: 2383799526953361157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_up_right_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: -8}
+        - {x: 2, y: -3}
+        - {x: 8, y: -3}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c42f85561791e428945dd6b1bcc21a
+      internalID: 2362286211301819550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_tileset_v1_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: -3}
+        - {x: -5, y: 0}
+        - {x: 4, y: 1}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f0922ddb8de134fa3039127f55f248
+      internalID: 8026505368450843825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_flat_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: -6}
+        - {x: -7, y: -4}
+        - {x: -7, y: 5}
+        - {x: -4, y: 7}
+        - {x: 8, y: 7}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: daf8029badee12b43921453cebe7e9f0
+      internalID: -9149726003791790739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_flat_middle
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -6}
+        - {x: -8, y: 7}
+        - {x: 8, y: 7}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb48b03ec93f99240bfb0d69f97be401
+      internalID: 6409535711723105879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_flat_right
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -6}
+        - {x: -8, y: 7}
+        - {x: 5, y: 7}
+        - {x: 7, y: 5}
+        - {x: 7, y: -1}
+        - {x: 6, y: -5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5d1794cb3d46174fa2e70404fefbf11
+      internalID: -8693933646220152664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_block
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: -6}
+        - {x: -5, y: -6}
+        - {x: -7, y: -4}
+        - {x: -7, y: 5}
+        - {x: -4, y: 7}
+        - {x: 5, y: 7}
+        - {x: 7, y: 5}
+        - {x: 7, y: -4}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095f10f0c176b96419434fe76194af71
+      internalID: -6291791347246503019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_back_up_right
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 3, y: 8}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 403d79fb7cff21b44a3ebf1d868a3d19
+      internalID: -6350038735689145405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_back_up_left
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: -3, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c4a95d16f51d34f940a831f2956ad2
+      internalID: 445773448316049420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_short_slope_up_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 7}
+        - {x: -1, y: -1}
+        - {x: 6, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66201c5fb7c370c49a4acd85d6275af3
+      internalID: -2418215420080043163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_short_slope_up_right
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: -8}
+        - {x: 1, y: -1}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04d623f928486a4ab6e10dc16075099
+      internalID: 4855472599334017425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_back_down_right
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: -8}
+        - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bbd8c9c4505fe74c85b5d1a8fc7c342
+      internalID: -3525049978846353422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_back_down_left
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: -8}
+        - {x: -8, y: -7}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3adbd3350ab2774bb6df41fae2b449f
+      internalID: -2019636230634034801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_down_left_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 5, y: 0}
+        - {x: -4, y: -1}
+        - {x: -8, y: -7}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca9ff6031ad71c4a942a57c37101945
+      internalID: -4528529697477894926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_down_left_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2, y: 3}
+        - {x: -8, y: 3}
+        - {x: -8, y: 8}
+        - {x: 3, y: 8}
+        - {x: 3, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b7dd2e58e45de4cb5c2677bec562a9
+      internalID: 9154705419203447531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_long_slope_down_right_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: 3}
+        - {x: -3, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af149ed987003844f9f6361c0355292c
+      internalID: -3899001276716220723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_tileset_v1_39
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -1}
+        - {x: -5, y: 0}
+        - {x: -8, y: 3}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00efb77eb5c685342a108fc0285eee16
+      internalID: 2764826045628098109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_short_slope_down_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -7}
+        - {x: -8, y: 8}
+        - {x: 6, y: 8}
+        - {x: -1, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba9a75569edf1a4182676cc74f3794c
+      internalID: 4841917368072888962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: city_ruins_short_slope_down_right
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 1}
+        - {x: -6, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84cd5de5f33693642afea56b214d53aa
+      internalID: 493615448531037215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
