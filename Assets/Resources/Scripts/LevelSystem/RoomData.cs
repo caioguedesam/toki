@@ -20,10 +20,10 @@ public class RoomData : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < doors.Length; i++)
+        /*for(int i = 0; i < doors.Length; i++)
         {
             doors[i].SetInitialState();
-        }
+        }*/
     }
 
     public void ResetRoom()

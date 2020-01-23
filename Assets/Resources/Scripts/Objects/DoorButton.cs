@@ -22,8 +22,8 @@ public class DoorButton : MonoBehaviour
     // Delay time for next toggle on button
     public float buttonToggleDelayTime = 0.3f;
 
-    // Button press particle
-    public ParticleSystem pressParticle;
+    // Animator reference
+    private Animator animator;
 
     
     [SerializeField]
@@ -33,6 +33,7 @@ public class DoorButton : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -42,12 +43,26 @@ public class DoorButton : MonoBehaviour
         // And active state begins false
         isActive = false;
         initialState = isActive;
+
+        // Setting timed parameter in animator
+        animator.SetBool("isTimed", isTimed);
+        // Setting animation slowdown or speedup for recovery of timed levers
+        if(isTimed)
+        {
+            animator.SetFloat("RecoverTime", TimedAnimationMultiplier(buttonTimer, 1f));
+        }
     }
 
     public void ResetObj()
     {
         Debug.Log("Resetting button");
         isActive = initialState;
+
+        if(isTimed)
+        {
+            animator.SetTrigger("Reset");
+            buttonStartTime = 0f;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -85,10 +100,6 @@ public class DoorButton : MonoBehaviour
         }
         // Change button state every call to this method
         isActive = !isActive;
-
-        // Instantiating button press particles
-        ParticleSystem particle = GameObject.Instantiate(pressParticle, transform);
-        particle.transform.position = transform.position + new Vector3(0,0, 100);
     }
 
     /// <summary>
@@ -101,6 +112,16 @@ public class DoorButton : MonoBehaviour
             isActivating = true;
             Debug.Log("Pressed Button!");
 
+            // Play lever pull/push animation depending on button state
+            if (!isActive)
+            {
+                animator.SetTrigger("Pulled");
+            }
+            else if (!isTimed)
+            {
+                animator.SetTrigger("Pushed");
+            }
+
             // Set button start time (important for rewind handling)
             buttonStartTime = buttonCurrentFrameTime;
 
@@ -112,6 +133,11 @@ public class DoorButton : MonoBehaviour
 
             isActivating = false;
         }
+    }
+
+    private float TimedAnimationMultiplier(float buttonTime, float animationTime)
+    {
+        return animationTime / buttonTime;
     }
 
     /// <summary>

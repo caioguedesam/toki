@@ -41,7 +41,7 @@ public class CameraRewindShake : MonoBehaviour
                 yield return null;
             }
 
-            // Restore origina gain from camera impulse listener
+            // Restore original gain from camera impulse listener
             cameraListener.m_Gain = originalGain;
             // Allow new coroutine calls
             isShaking = false;
