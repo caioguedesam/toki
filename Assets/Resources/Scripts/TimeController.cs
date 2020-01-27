@@ -98,7 +98,6 @@ public class TimeController : MonoBehaviour
             rewindEndTime = Time.time;
             lastRewindTime = Mathf.Min(rewindEndTime - rewindStartTime, rewindSeconds);
 
-            Debug.Log("last rewind time: " + lastRewindTime);
 
             // Allowing for next rewind to be recorded
             isCheckingRewindTime = false;
@@ -148,6 +147,21 @@ public class TimeController : MonoBehaviour
 
         posArray.Add(pos);
 
+        // Continuously removing all positions outside time threshold
+        posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
+    }
+
+    /// <summary>
+    /// Adds a new box collider object position to the position list. Used for simple stuff like rewinding pillars/levers.
+    /// </summary>
+    public void AddPosition(GameObject gameObj, List<BoxColliderTimePosition> posArray)
+    {
+        BoxColliderTimePosition pos = new BoxColliderTimePosition();
+        pos.time = Time.time;
+        pos.sprite = gameObj.GetComponent<SpriteRenderer>().sprite;
+        pos.colliderSize = gameObj.GetComponent<BoxCollider2D>().size;
+
+        posArray.Add(pos);
         // Continuously removing all positions outside time threshold
         posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
     }
@@ -253,6 +267,14 @@ public class PlayerTimePosition
     public TimePositionInput input;
     public Sprite sprite;
     public bool facingRight;
+}
+
+[System.Serializable]
+public class BoxColliderTimePosition
+{
+    public float time;
+    public Sprite sprite;
+    public Vector2 colliderSize;
 }
 
 [System.Serializable]

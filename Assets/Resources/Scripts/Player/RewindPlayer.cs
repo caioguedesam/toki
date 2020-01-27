@@ -43,7 +43,6 @@ public class RewindPlayer : MonoBehaviour
             // Set player inputs along with position
             player.SetInputFromPosition(currentPos.input);
             // Setting sprite
-            Debug.Log(currentPos.sprite.name);
             player.GetComponentInChildren<SpriteRenderer>().sprite = currentPos.sprite;
             player.facingRight = currentPos.facingRight;
             // Insert the position on the record for the clone

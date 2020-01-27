@@ -23,25 +23,15 @@ public class Door : MonoBehaviour
         animator.SetBool("InitialState", initialState);
     }
 
-    /*public void SetInitialState()
-    {
-        //initialState = gameObject.activeSelf;
-
-        // Setting initial state in animator
-    }*/
-
     public void ActivateDoor()
     {
-        Debug.Log("Toggling door!");
-        //gameObject.SetActive(!gameObject.activeSelf);
+        Debug.Log("Toggling door at " + Time.time);
         animator.SetTrigger("Toggled");
         impulseSource.GenerateImpulse();
     }
 
     public void ResetObj()
     {
-        Debug.Log("Resetting " + name + " to " + initialState);
-        //gameObject.SetActive(initialState);
         animator.SetTrigger("Reset");
     }
 }

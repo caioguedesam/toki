@@ -14,13 +14,16 @@ public class DoorButton : MonoBehaviour
     // Seconds for button timer
     public float buttonTimer = 3f;
     // Button timer variables
-    private float buttonCurrentFrameTime = 0f;
+    [SerializeField] private float buttonCurrentFrameTime = 0f;
     private float buttonPastFrameTime = 0f;
     [SerializeField]
     private float buttonStartTime = 0f;
 
     // Delay time for next toggle on button
     public float buttonToggleDelayTime = 0.3f;
+
+    // Animation time variable for handling time rewinding levers
+    private float lastAnimTime = 0f;
 
     // Animator reference
     private Animator animator;
@@ -34,6 +37,7 @@ public class DoorButton : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         animator = GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
     private void Start()
@@ -55,7 +59,6 @@ public class DoorButton : MonoBehaviour
 
     public void ResetObj()
     {
-        Debug.Log("Resetting button");
         isActive = initialState;
 
         if(isTimed)
@@ -82,6 +85,9 @@ public class DoorButton : MonoBehaviour
             Clone clone = collision.GetComponent<Clone>();
             if (clone.clonePositions[clone.posIndex-1].input.interactInput)
             {
+                // Don't allow the player to press button during active state if timed
+                if (isTimed && isActive)
+                    return;
                 StartCoroutine(ToggleButton());
             }
         }
@@ -110,7 +116,6 @@ public class DoorButton : MonoBehaviour
         if(!isActivating)
         {
             isActivating = true;
-            Debug.Log("Pressed Button!");
 
             // Play lever pull/push animation depending on button state
             if (!isActive)
@@ -129,6 +134,7 @@ public class DoorButton : MonoBehaviour
             if (!isTimed)
                 yield return new WaitForSeconds(buttonToggleDelayTime);
 
+            Debug.Log("Regular ToggleButton");
             ActivateAllButtonObjects();
 
             isActivating = false;
@@ -154,16 +160,19 @@ public class DoorButton : MonoBehaviour
             // Case 1: if button is rewinding, inactive and was previously active
             if(buttonIsRewinding && !isActive && buttonCurrentFrameTime < buttonStartTime + buttonTimer && buttonCurrentFrameTime > buttonStartTime)
             {
+                Debug.Log("CheckButtonToggle - Case1");
                 ActivateAllButtonObjects();
             }
             // Case 2: if button is rewinding, active and was previously inactive
             else if (buttonIsRewinding && isActive && buttonCurrentFrameTime < buttonStartTime)
             {
+                Debug.Log("CheckButtonToggle - Case2");
                 ActivateAllButtonObjects();
             }
             // Case 3: if button is not rewinding, active and needs to be deactivated
             else if(!buttonIsRewinding && isActive && buttonCurrentFrameTime > buttonStartTime + buttonTimer)
             {
+                Debug.Log("CheckButtonToggle - Case3");
                 ActivateAllButtonObjects();
             }
         }
@@ -171,6 +180,8 @@ public class DoorButton : MonoBehaviour
 
     private void Update()
     {
+        animator.enabled = !TimeController.Instance.playerIsFrozen;
+        animator.SetBool("isActive", isActive);
         // Set past time as current time every frame, before updating current time
         buttonPastFrameTime = buttonCurrentFrameTime;
 
@@ -178,13 +189,37 @@ public class DoorButton : MonoBehaviour
         if (!TimeController.Instance.isRewindingTime)
         {
             buttonCurrentFrameTime += Time.deltaTime;
+            animator.SetFloat("RewindMultiplier", 1f);
+            // Storing last animation time when not time rewinding
+            lastAnimTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         }
         else
         {
-            if(buttonCurrentFrameTime > 0 && !TimeController.Instance.playerIsFrozen)
+            animator.SetFloat("RewindMultiplier", -1f);
+            animator.ResetTrigger("GoBack");
+
+            if (buttonCurrentFrameTime > 0 && !TimeController.Instance.playerIsFrozen)
             {
                 buttonCurrentFrameTime -= Time.deltaTime;
             }
+        }
+
+        // Handling animation rewind for timed buttons
+        if(isTimed && TimeController.Instance.isRewindingTime)
+        {
+            animator.SetFloat("RecoverTime", TimedAnimationMultiplier(buttonTimer, -1f));
+
+            // If animation reaches start, go back to previous one
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime - lastAnimTime >= 1)
+            {
+                Debug.Log("animation time diff: " + (animator.GetCurrentAnimatorStateInfo(0).normalizedTime - lastAnimTime));
+                animator.SetTrigger("GoBack");
+                lastAnimTime = 0f;
+            }
+        }
+        else
+        {
+            animator.SetFloat("RecoverTime", TimedAnimationMultiplier(buttonTimer, 1f));
         }
 
         // Finally, check for needed toggles
