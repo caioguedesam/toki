@@ -7,6 +7,7 @@ public class RoomCameraConfiner : MonoBehaviour
 {
     public GameObject vcam;
     [SerializeField] private int roomIndex;
+    [SerializeField] private int levelIndex;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class RoomCameraConfiner : MonoBehaviour
                 TimeController.Instance.DestroyAllClones();
             }
             LevelDataHolder.Instance.currentRoomIndex = roomIndex;
+
+            LevelDataHolder.Instance.CheckForGameProgress(levelIndex, roomIndex);
         }
     }
 

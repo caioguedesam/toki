@@ -18,6 +18,10 @@ public class LevelDataHolder : MonoBehaviour
     public int currentRoomIndex;
     public Vector2 currentLevelSpawnPos;
 
+    // Player data for saving and loading (move later to more general GameDataHolder)
+    public int highestLevelVisited { get; private set; }
+    public int highestRoomVisited { get; private set; }
+
     private void Awake()
     {
         // If there's nothing in the instance property, assign LevelDataHolder information to object.
@@ -36,10 +40,23 @@ public class LevelDataHolder : MonoBehaviour
         for(int i = 0; i < levelGrid.transform.childCount; i++)
         {
             RoomData room = levelGrid.transform.GetChild(i).GetComponent<RoomData>();
+            room.levelIndex = currentLevelIndex;
             room.roomIndex = i;
             roomList.Add(room);
-            Debug.Log("Setting " + room.name + " with index " + room.roomIndex);
         }
+
+        SaveData data = SaveSystem.LoadGame();
+        if(data != null)
+        {
+            highestLevelVisited = data.highestLevelVisited;
+            highestRoomVisited = data.highestRoomVisited;
+        }
+    }
+
+    private void Start()
+    {
+        // Player spawns in the room registered in save data (later add logic for level select)
+        player.transform.position = roomList[highestRoomVisited].spawn.transform.position;
     }
 
     private void UpdateSpawnPosition()
@@ -51,6 +68,26 @@ public class LevelDataHolder : MonoBehaviour
     {
         player.transform.position = currentLevelSpawnPos;
         roomList[currentRoomIndex].ResetRoom();
+    }
+
+    public void CheckForGameProgress(int level, int room)
+    {
+        Debug.Log("Checking for game progress...");
+        if (level > highestLevelVisited)
+        {
+            highestLevelVisited = level;
+            highestRoomVisited = room;
+            Debug.Log("new level reached: " + highestLevelVisited);
+            Debug.Log("new room reached: " + highestRoomVisited);
+
+            SaveSystem.SaveGame(Instance);
+        }
+        else if(room > highestRoomVisited)
+        {
+            highestRoomVisited = room;
+            Debug.Log("new room reached: " + highestRoomVisited);
+            SaveSystem.SaveGame(Instance);
+        }
     }
 
     private void Update()

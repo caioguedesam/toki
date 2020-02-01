@@ -11,6 +11,7 @@ TagManager:
   - Graphics
   - Spawn
   - Button
+  - LevelDataHolder
   layers:
   - Default
   - TransparentFX
@@ -51,10 +52,13 @@ TagManager:
   - name: Background
     uniqueID: 1442057357
     locked: 0
+  - name: Foreground
+    uniqueID: 1427796907
+    locked: 0
   - name: Clone
     uniqueID: 3638489349
     locked: 0
-  - name: Foreground
+  - name: Game Elements
     uniqueID: 2205868617
     locked: 0
   - name: UI

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomData : MonoBehaviour
 {
+    public int levelIndex;
     public int roomIndex;
     public RespawnPoint spawn;
 
