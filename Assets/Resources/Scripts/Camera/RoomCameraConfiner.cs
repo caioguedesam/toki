@@ -11,6 +11,7 @@ public class RoomCameraConfiner : MonoBehaviour
 
     private void Start()
     {
+        levelIndex = GetComponentInParent<LevelData>().levelIndex;
         roomIndex = GetComponentInParent<RoomData>().roomIndex;
     }
 

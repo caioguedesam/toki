@@ -67,7 +67,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -656477947
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2370603860528661923, guid: 69bf46500b663c7449b7cf971467cd18,
     type: 3}
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6110658529903500928}
   - component: {fileID: 2203639887579082499}
   - component: {fileID: 6836741801688947736}
+  - component: {fileID: 8238718754163298387}
   m_Layer: 9
   m_Name: TimeClone
   m_TagString: TimeClone
@@ -211,6 +212,8 @@ MonoBehaviour:
     slopeAngle: 0
     slopeAnglePast: 0
   moveAmountPast: {x: 0, y: 0, z: 0}
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
 --- !u!114 &6836741801688947736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +231,24 @@ MonoBehaviour:
   anchorDirection: 0
   gizmoRadius: 0.25
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &8238718754163298387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441577909339075126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe676bcc8ffac4da8c8c9d94f2f690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayMaximumLength: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 3072
+  holdPosition: {x: 0, y: 1.2}
+  gizmoRadius: 0.18
 --- !u!1 &8778532122793711701
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0063348, y: 0.9967731}
   m_EdgeRadius: 0
 --- !u!50 &2922192642235397188
 Rigidbody2D:
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBeingHeld: 0
+  isBeingHeldByPlayer: 0
 --- !u!1 &2922192642560941673
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +202,7 @@ MonoBehaviour:
   throwResistance: 0.2
   isBeingHeld: 0
   wasJustPickedUp: 0
+  moveAmount: {x: 0, y: 0, z: 0}
 --- !u!1 &2922192643175997813
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,14 +19,14 @@ public class Controller2D : MonoBehaviour
     // Collider
     private BoxCollider2D coll;
     // Ray origins
-    private RaycastOrigins raycastOrigins;
+    public RaycastOrigins raycastOrigins;
     // Object collision information
     public CollisionInfo collisions;
     // Movement amount past frame information
     public Vector3 moveAmountPast;
 
     // Space between collision raycasts
-    private float horizontalRaySpacing, verticalRaySpacing;
+    public float horizontalRaySpacing, verticalRaySpacing;
 
     private void Awake()
     {
@@ -57,7 +57,7 @@ public class Controller2D : MonoBehaviour
     /// <summary>
     /// Calculates collision raycast spacing based on ray count and collider size.
     /// </summary>
-    private void CalculateRaySpacing()
+    public void CalculateRaySpacing()
     {
         Bounds bounds = coll.bounds;
         bounds.Expand(-2 * skinWidth);

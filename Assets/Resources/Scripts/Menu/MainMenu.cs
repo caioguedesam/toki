@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public SaveData saveData;
+    public int sceneCount;
 
     private void Awake()
     {
@@ -15,6 +16,9 @@ public class MainMenu : MonoBehaviour
             saveData.highestLevelVisited = saveData.highestRoomVisited = 0;
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Scene Count gets - 1 because main menu is scene 0.
+        sceneCount = SceneManager.sceneCount - 1;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -22,9 +26,12 @@ public class MainMenu : MonoBehaviour
         Debug.Log("On Scene loaded: " + scene.name);
     }
 
+    /// <summary>
+    /// Loads game with current save data.
+    /// </summary>
     public void PlayGame()
     {
-        SceneManager.LoadScene("CityScene");
+        SceneManager.LoadScene(saveData.highestLevelVisited);
     }
 
     public void ClearData()

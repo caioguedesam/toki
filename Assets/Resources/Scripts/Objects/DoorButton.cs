@@ -212,7 +212,7 @@ public class DoorButton : MonoBehaviour
             // If animation reaches start, go back to previous one
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime - lastAnimTime >= 1)
             {
-                Debug.Log("animation time diff: " + (animator.GetCurrentAnimatorStateInfo(0).normalizedTime - lastAnimTime));
+                //Debug.Log("animation time diff: " + (animator.GetCurrentAnimatorStateInfo(0).normalizedTime - lastAnimTime));
                 animator.SetTrigger("GoBack");
                 lastAnimTime = 0f;
             }

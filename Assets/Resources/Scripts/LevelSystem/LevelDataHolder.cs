@@ -36,6 +36,9 @@ public class LevelDataHolder : MonoBehaviour
             Destroy(gameObject);
         }
 
+        levelGrid = GameObject.FindWithTag("LevelData");
+        currentLevelIndex = levelGrid.GetComponent<LevelData>().levelIndex;
+
         roomList = new List<RoomData>();
         for(int i = 0; i < levelGrid.transform.childCount; i++)
         {
@@ -88,6 +91,15 @@ public class LevelDataHolder : MonoBehaviour
             Debug.Log("new room reached: " + highestRoomVisited);
             SaveSystem.SaveGame(Instance);
         }
+
+        // Updating current level index in leveldataholder and level information
+        // if level changes, update level grid game object accordingly
+        /*if(currentLevelIndex != levelGrid.GetComponent<LevelData>().levelIndex)*/
+        if(levelGrid == null)
+        {
+            levelGrid = GameObject.FindWithTag("LevelData");
+        }
+        currentLevelIndex = levelGrid.GetComponent<LevelData>().levelIndex;
     }
 
     private void Update()

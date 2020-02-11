@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     public float accelerationTimeGrounded = .1f;
     public bool isHoldingObject = false;
 
-    Vector3 moveAmount;
+    public Vector3 moveAmount;
     private float moveAmountXSmoothing;
 
     // Player references

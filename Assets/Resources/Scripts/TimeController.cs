@@ -55,6 +55,7 @@ public class TimeController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         cloneList = new List<GameObject>();
         originalFixedDeltaTime = Time.fixedDeltaTime;
     }
@@ -185,6 +186,17 @@ public class TimeController : MonoBehaviour
 
     }
 
+    public void AddPosition(HoldObject obj, List<HoldObjectPosition> posArray)
+    {
+        // Making new position to store in list
+        HoldObjectPosition pos = new HoldObjectPosition(obj.transform.position, obj.GetComponent<Rigidbody2D>().velocity, obj.transform.parent, Time.time);
+
+        posArray.Add(pos);
+
+        // Continuously removing all positions outside time threshold
+        posArray.RemoveAll(x => x.time <= (Time.time - rewindSeconds));
+    }
+
     /// <summary>
     /// Adds a time clone to the controller's clone list.
     /// </summary>
@@ -243,6 +255,12 @@ public class TimeController : MonoBehaviour
 
     private void Update()
     {
+        // If player reference is missing, fetch it back. Happens when changing levels
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        }
+
         CheckRewind();
         CheckDestroyClones();
         playerIsFrozen = player.GetComponent<RewindPlayer>().isFrozen;

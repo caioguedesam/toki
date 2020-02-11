@@ -12,6 +12,9 @@ TagManager:
   - Spawn
   - Button
   - LevelDataHolder
+  - LevelData
+  - TimeController
+  - HoldObject
   layers:
   - Default
   - TransparentFX
