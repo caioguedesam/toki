@@ -100,16 +100,17 @@ public class DetectHoldObjects : MonoBehaviour
                         Clone clone = this.GetComponent<Clone>();
                         if(clone.posIndex < clone.clonePositions.Count && clone.clonePositions[clone.posIndex].input.interactInput)
                         {
-                            Debug.Log("Clone Pick up");
                             // Pick up: disable collider, update object position to holdPosition and set object as child of player.
                             HoldObject holdObject = hit.transform.GetComponent<HoldObject>();
                             if (holdObject.canBePickedUp)
                             {
+                                Debug.Log("Clone Pick up");
                                 // Disable collider when carrying only if player is. If it's a clone, keep collider enabled.
                                 StartCoroutine(holdObject.SendPickupSignal(false));
 
                                 // Change rigidbody position and new parent
                                 hit.transform.position = (Vector2)transform.position + holdPosition;
+                                Debug.Log("Setting parent in pickup");
                                 hit.transform.SetParent(transform);
                             }
                         }

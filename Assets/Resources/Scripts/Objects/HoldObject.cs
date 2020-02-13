@@ -31,6 +31,8 @@ public class HoldObject : MonoBehaviour
     public bool canBePickedUp = true;
     // Can the object be thrown?
     [SerializeField] private bool canThrow = false;
+    // Has clone just dropped the object?
+    [SerializeField] private bool cloneDropped = false;
 
     // List of object positions for rewind
     [SerializeField] private List<HoldObjectPosition> positions;
@@ -132,6 +134,17 @@ public class HoldObject : MonoBehaviour
         }
     }
 
+    private IEnumerator CloneDropped()
+    {
+        if(!cloneDropped)
+        {
+            canBePickedUp = false;
+            cloneDropped = true;
+            yield return new WaitForSeconds(throwCooldown);
+            canBePickedUp = true;
+        }
+    }
+
     private void ObjectRewind()
     {
         // If there are positions left on the position list, move player past one position 
@@ -147,10 +160,17 @@ public class HoldObject : MonoBehaviour
                 if(currentPos.parent.CompareTag("Player"))
                 {
                     StartCoroutine(SendPickupSignal(true));
+                    transform.SetParent(currentPos.parent);
                 }
-                else if (currentPos.parent.CompareTag("TimeClone"))
+                else if (currentPos.parent.CompareTag("TimeClone") && !cloneDropped)
                 {
                     StartCoroutine(SendPickupSignal(false));
+                    transform.SetParent(currentPos.parent);
+                    /*Clone clone = currentPos.parent.GetComponent<Clone>();
+                    if (clone.posIndex < clone.clonePositions.Count && clone.clonePositions[clone.posIndex].input.interactInput)
+                    {
+                        transform.SetParent(currentPos.parent);
+                    }*/
                 }
                 else if(transform.parent.CompareTag("Player"))
                 {
@@ -163,9 +183,24 @@ public class HoldObject : MonoBehaviour
                     coll.enabled = true;
                     rigidBody.isKinematic = false;
                     canBePickedUp = true;
+                    transform.SetParent(currentPos.parent);
                 }
             }
-            transform.SetParent(currentPos.parent);
+            // Additional logic for when clone is rewinding
+            else if(transform.parent.CompareTag("TimeClone"))
+            {
+                Clone clone = GetComponentInParent<Clone>();
+                if(clone.posIndex < clone.clonePositions.Count && clone.clonePositions[clone.posIndex].input.interactInput)
+                {
+                    // Re-enable collider and reset dynamic rb
+                    coll.enabled = true;
+                    rigidBody.isKinematic = false;
+                    StartCoroutine(CloneDropped());
+                    Debug.Log("Resetting parent");
+                    transform.SetParent(levelParentObj.transform, true);
+                }
+            }
+            //transform.SetParent(currentPos.parent);
 
             lastVelocity = currentPos.velocity;
 
@@ -175,6 +210,7 @@ public class HoldObject : MonoBehaviour
         else
         {
             rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            rigidBody.AddForce(new Vector2(0f, -0.001f));
         }
     }
 
@@ -187,6 +223,8 @@ public class HoldObject : MonoBehaviour
             if (TimeController.Instance.stoppedRewind)
                 rigidBody.velocity = lastVelocity;
 
+            cloneDropped = false;
+
             // Add position to register
             TimeController.Instance.AddPosition(this, positions);
 
@@ -198,6 +236,7 @@ public class HoldObject : MonoBehaviour
         {
             ObjectRewind();
         }
+        Debug.Log(rigidBody.velocity);
     }
 }
 
