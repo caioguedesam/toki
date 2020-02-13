@@ -181,6 +181,20 @@ public class HoldObject : MonoBehaviour
         rigidBody.isKinematic = false;
     }
 
+    public void CloneClear()
+    {
+        // Resetting parent after cleared clone drops object
+        transform.SetParent(levelParentObj.transform, true);
+
+        // Resetting pick up variables
+        canBePickedUp = true;
+        canThrow = false;
+
+        // Resetting hold object properties
+        coll.enabled = true;
+        rigidBody.isKinematic = false;
+    }
+
     private void ObjectRewind()
     {
         // If there are positions left on the position list, move player past one position 

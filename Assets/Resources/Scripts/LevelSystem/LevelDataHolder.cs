@@ -43,7 +43,6 @@ public class LevelDataHolder : MonoBehaviour
         int roomCount = levelGrid.GetComponentsInChildren<RoomData>().Length;
         for (int i = 0; i < roomCount; i++)
         {
-            Debug.Log("Adding room " + i);
             RoomData room = levelGrid.transform.GetChild(i).GetComponent<RoomData>();
             room.levelIndex = currentLevelIndex;
             room.roomIndex = i;
@@ -67,7 +66,6 @@ public class LevelDataHolder : MonoBehaviour
     private void UpdateSpawnPosition()
     {
         currentLevelSpawnPos = roomList[currentRoomIndex].spawn.transform.position;
-        Debug.Log(currentLevelSpawnPos);
     }
 
     public void RespawnPlayer()

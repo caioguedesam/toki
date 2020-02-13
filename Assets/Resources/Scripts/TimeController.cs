@@ -239,6 +239,11 @@ public class TimeController : MonoBehaviour
     {
         for (int i = 0; i < cloneList.Count; i++)
         {
+            bool isHoldingObj = cloneList[i].GetComponent<DetectHoldObjects>().isHoldingObj;
+            if(isHoldingObj)
+            {
+                cloneList[i].GetComponentInChildren<HoldObject>().CloneClear();
+            }
             Destroy(cloneList[i]);
             cloneList.RemoveAt(i);
         }
