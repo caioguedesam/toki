@@ -9,6 +9,9 @@ public class DetectHoldObjects : MonoBehaviour
     private BoxCollider2D playerCollider;
     private PlayerControl player;
 
+    // Is the actor holding an object?
+    public bool isHoldingObj = false;
+
     // Skin width to fire rays from within object
     const float skinWidth = 0.015f;
 
@@ -93,6 +96,9 @@ public class DetectHoldObjects : MonoBehaviour
                             hit.transform.GetComponent<Rigidbody2D>().isKinematic = true;
                             hit.transform.position = (Vector2)transform.position + holdPosition;
                             hit.transform.SetParent(transform);
+
+                            // Change isHolding to true
+                            isHoldingObj = true;
                         }
                     }
                     else if(this.CompareTag("TimeClone"))
@@ -112,6 +118,9 @@ public class DetectHoldObjects : MonoBehaviour
                                 hit.transform.position = (Vector2)transform.position + holdPosition;
                                 Debug.Log("Setting parent in pickup");
                                 hit.transform.SetParent(transform);
+
+                                // Change isHolding to true
+                                isHoldingObj = true;
                             }
                         }
                     }

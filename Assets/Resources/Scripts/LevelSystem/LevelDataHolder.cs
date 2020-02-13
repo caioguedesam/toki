@@ -40,8 +40,10 @@ public class LevelDataHolder : MonoBehaviour
         currentLevelIndex = levelGrid.GetComponent<LevelData>().levelIndex;
 
         roomList = new List<RoomData>();
-        for(int i = 0; i < levelGrid.transform.childCount; i++)
+        int roomCount = levelGrid.GetComponentsInChildren<RoomData>().Length;
+        for (int i = 0; i < roomCount; i++)
         {
+            Debug.Log("Adding room " + i);
             RoomData room = levelGrid.transform.GetChild(i).GetComponent<RoomData>();
             room.levelIndex = currentLevelIndex;
             room.roomIndex = i;
@@ -65,11 +67,13 @@ public class LevelDataHolder : MonoBehaviour
     private void UpdateSpawnPosition()
     {
         currentLevelSpawnPos = roomList[currentRoomIndex].spawn.transform.position;
+        Debug.Log(currentLevelSpawnPos);
     }
 
     public void RespawnPlayer()
     {
         player.transform.position = currentLevelSpawnPos;
+        Debug.Log(currentLevelSpawnPos);
         roomList[currentRoomIndex].ResetRoom();
     }
 
@@ -104,6 +108,8 @@ public class LevelDataHolder : MonoBehaviour
 
     private void Update()
     {
+        // Keep updating spawn position based on current level. Maybe optimize to
+        // only calculate once per level change?
         UpdateSpawnPosition();
     }
 }

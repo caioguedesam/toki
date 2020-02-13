@@ -11,6 +11,8 @@ public class HoldObject : MonoBehaviour
 
     // Original level reference
     private GameObject levelParentObj;
+    // Original transform position (for reset purposes)
+    private Vector2 originalPosition;
 
     // Collider and Rigidbody2D reference
     private BoxCollider2D coll;
@@ -47,6 +49,7 @@ public class HoldObject : MonoBehaviour
         playerController = playerObj.GetComponent<Controller2D>();
 
         levelParentObj = transform.parent.gameObject;
+        originalPosition = transform.position;
 
         coll = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -126,6 +129,9 @@ public class HoldObject : MonoBehaviour
             rigidBody.isKinematic = false;
             rigidBody.AddForce(new Vector2(directionX * throwForce * Mathf.Cos(angleRad), throwForce * Mathf.Sin(angleRad)));
 
+            // Resetting hold boolean on actor
+            transform.parent.GetComponent<DetectHoldObjects>().isHoldingObj = false;
+
             // Re-enable collider
             coll.enabled = true;
 
@@ -143,6 +149,36 @@ public class HoldObject : MonoBehaviour
             yield return new WaitForSeconds(throwCooldown);
             canBePickedUp = true;
         }
+    }
+
+    public void ResetObj()
+    {
+        // If player was holding object, reduce collider size accordingly
+        if (transform.parent.CompareTag("Player") || transform.parent.CompareTag("TimeClone"))
+        {
+            bool isBeingHeld = transform.parent.GetComponent<DetectHoldObjects>().isHoldingObj;
+            if(transform.parent.CompareTag("Player") && isBeingHeld)
+            {
+                playerCollider.size = new Vector2(playerCollider.size.x, playerCollider.size.y - coll.size.y);
+                playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y - coll.size.y / 2f);
+                playerController.CalculateRaySpacing();
+            }
+
+            transform.parent.GetComponent<DetectHoldObjects>().isHoldingObj = false;
+        }
+
+        // Reset parent and position
+        transform.SetParent(levelParentObj.transform, true);
+        transform.position = originalPosition;
+        // Reset position array
+        positions.Clear();
+        // Resetting pick up variables
+        canBePickedUp = true;
+        canThrow = false;
+
+        // Resetting hold object properties
+        coll.enabled = true;
+        rigidBody.isKinematic = false;
     }
 
     private void ObjectRewind()
@@ -236,7 +272,6 @@ public class HoldObject : MonoBehaviour
         {
             ObjectRewind();
         }
-        Debug.Log(rigidBody.velocity);
     }
 }
 

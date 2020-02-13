@@ -11,12 +11,13 @@ public class RoomData : MonoBehaviour
     // Room data
     private DoorButton[] doorButtons;
     private Door[] doors;
-
+    private HoldObject[] holdObjects;
     private void Awake()
     {
         spawn = GetComponentInChildren<RespawnPoint>();
         doorButtons = GetComponentsInChildren<DoorButton>(true);
         doors = GetComponentsInChildren<Door>(true);
+        holdObjects = GetComponentsInChildren<HoldObject>(true);
     }
 
     private void Start()
@@ -38,7 +39,10 @@ public class RoomData : MonoBehaviour
         {
             doorButtons[i].ResetObj();
         }
-        
+        for(int i = 0; i < holdObjects.Length; i++)
+        {
+            holdObjects[i].ResetObj();
+        }
 
         // Destroying time clones
         TimeController.Instance.DestroyAllClones();
