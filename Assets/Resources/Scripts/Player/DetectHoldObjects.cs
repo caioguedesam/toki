@@ -8,6 +8,7 @@ public class DetectHoldObjects : MonoBehaviour
     private Controller2D playerController;
     private BoxCollider2D playerCollider;
     private PlayerControl player;
+    private Animator playerAnimator;
 
     // Is the actor holding an object?
     public bool isHoldingObj = false;
@@ -34,6 +35,7 @@ public class DetectHoldObjects : MonoBehaviour
         playerController = GetComponent<Controller2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         player = GetComponent<PlayerControl>();
+        playerAnimator = GetComponentInChildren<Animator>();
         horizontalRayCount = playerController.horizontalRayCount;
     }
 
@@ -125,33 +127,6 @@ public class DetectHoldObjects : MonoBehaviour
                         }
                     }
                 }
-
-                /*// If object is hit and player interacts, pick up
-                if (hit.transform.CompareTag("HoldObject") && player.interactInput)
-                {
-                    Debug.Log("Pick up");
-                    // Pick up: disable collider, update object position to holdPosition and set object as child of player.
-                    HoldObject holdObject = hit.transform.GetComponent<HoldObject>();
-                    if(holdObject.canBePickedUp)
-                    {
-                        // Disable collider when carrying only if player is. If it's a clone, keep collider enabled.
-                        if(transform.CompareTag("Player"))
-                        {
-                            hit.transform.GetComponent<BoxCollider2D>().enabled = false;
-
-                            StartCoroutine(holdObject.SendPickupSignal(true));
-                        }
-                        else
-                        {
-                            StartCoroutine(holdObject.SendPickupSignal(false));
-                        }
-                        
-                        // Change rigidbody type, position and new parent
-                        hit.transform.GetComponent<Rigidbody2D>().isKinematic = true;
-                        hit.transform.position = (Vector2)transform.position + holdPosition;
-                        hit.transform.SetParent(transform);
-                    }
-                }*/
             }
         }
     }
@@ -168,6 +143,22 @@ public class DetectHoldObjects : MonoBehaviour
             float cloneMoveX = (clone.cloneXDirection == Clone.CloneXDirection.left) ? -1 : 1;
             HorizontalRayCheck(new Vector3(cloneMoveX, 0f, 0f));
         }
+
+        // Checking hold state for animator
+        playerAnimator.SetBool("isHolding", isHoldingObj);
+
+        // Checking if the player can exit level based on holding object or not
+        if(isHoldingObj)
+        {
+            // If holding, add confinerwall layer to player collision mask
+            playerController.collisionMask |= (1 << LayerMask.NameToLayer("ConfinerWall"));
+        }
+        else
+        {
+            // If not, remove confinerwall layer to player collision mask
+            playerController.collisionMask &= ~(1 << LayerMask.NameToLayer("ConfinerWall"));
+        }
+        // Note: maybe not ideal to do in update. But it works
     }
 
     private void OnDrawGizmos()

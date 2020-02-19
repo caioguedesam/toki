@@ -8,6 +8,7 @@ public class HoldObject : MonoBehaviour
     private Controller2D playerController;
     private PlayerControl player;
     private BoxCollider2D playerCollider;
+    private Animator playerAnimator;
 
     // Original level reference
     private GameObject levelParentObj;
@@ -26,6 +27,8 @@ public class HoldObject : MonoBehaviour
     public float throwCooldown = 1f;
     // Throw Force
     public float throwForce = 200f;
+    // Running Throw Force
+    public float runThrowForce = 300f;
     // Throw Angle
     [Range(0f, 90f)] public float throwAngle = 30f;
 
@@ -47,6 +50,7 @@ public class HoldObject : MonoBehaviour
         player = playerObj.GetComponent<PlayerControl>();
         playerCollider = playerObj.GetComponent<BoxCollider2D>();
         playerController = playerObj.GetComponent<Controller2D>();
+        playerAnimator = playerObj.GetComponentInChildren<Animator>();
 
         levelParentObj = transform.parent.gameObject;
         originalPosition = transform.position;
@@ -76,6 +80,8 @@ public class HoldObject : MonoBehaviour
                 // Recalculating rays based on new collider size.
                 playerController.CalculateRaySpacing();
                 coll.enabled = false;
+                // Set animator trigger
+                playerAnimator.SetTrigger("hasPickedUp");
             }
 
             // FIX THIS: DISABLE ONLY WHEN PLAYER
@@ -122,18 +128,21 @@ public class HoldObject : MonoBehaviour
                 playerCollider.size = new Vector2(playerCollider.size.x, playerCollider.size.y - coll.size.y);
                 playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y - coll.size.y / 2f);
                 playerController.CalculateRaySpacing();
+                // Set animator trigger
+                playerAnimator.SetTrigger("hasReleased");
             }
-            
-            // Reset parent, then throw object with desired force and angle
-            transform.SetParent(levelParentObj.transform, true);
-            rigidBody.isKinematic = false;
-            rigidBody.AddForce(new Vector2(directionX * throwForce * Mathf.Cos(angleRad), throwForce * Mathf.Sin(angleRad)));
 
             // Resetting hold boolean on actor
             transform.parent.GetComponent<DetectHoldObjects>().isHoldingObj = false;
 
             // Re-enable collider
             coll.enabled = true;
+
+            // Reset parent, then throw object with desired force and angle
+            transform.SetParent(levelParentObj.transform, true);
+            rigidBody.isKinematic = false;
+            float force = (player.moveAmount.x > 0.1 || player.moveAmount.x < -0.1) ? runThrowForce : runThrowForce;
+            rigidBody.AddForce(new Vector2(directionX * force * Mathf.Cos(angleRad), force * Mathf.Sin(angleRad)));
 
             yield return new WaitForSeconds(throwCooldown);
             canBePickedUp = true;
